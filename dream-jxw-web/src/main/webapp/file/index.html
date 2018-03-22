@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="icon" href="#">
+    <script>
+        !function(e,t,i,r){function n(){var e=document.querySelector("head"),t=document.createElement("div");t.style.width="1rem",t.style.display="none",e.appendChild(t);var i=parseFloat(window.getComputedStyle(t,null).width);return e.removeChild(t),i}function a(){var r=d.getBoundingClientRect().width;r/c>768&&(r=768*c);var n=r/e*t;if(!i){var a=p/16;n/=a}d.style.fontSize=n+"px",v.rem=n}var m,o=window,l=o.document,d=l.documentElement,s=l.querySelector('meta[name="viewport"]'),c=0,u=0,p=n(),v={};if(s){var h=s.getAttribute("content").match(/initial\-scale=([\d\.]+)/);h&&(console.warn("将根据已有的meta标签来设置缩放比例"),u=parseFloat(h[1]),c=parseInt(1/u))}if(!c&&!u){var f=o.devicePixelRatio;r?(c=f>=3&&(!c||c>=3)?3:f>=2&&(!c||c>=2)?2:1,u=1/c):(c=1,u=1/c)}if(d.setAttribute("data-dpr",c),!s)if(s=l.createElement("meta"),s.setAttribute("name","viewport"),s.setAttribute("content","width=device-width, initial-scale="+u+", maximum-scale="+u+", minimum-scale="+u+", user-scalable=no"),d.firstElementChild)d.firstElementChild.appendChild(s);else{var w=l.createElement("div");w.appendChild(s),l.write(w.innerHTML)}o.addEventListener("resize",function(){clearTimeout(m),m=setTimeout(a,300)},!1),o.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(m),m=setTimeout(a,300))},!1),a(),v.dpr=c,v.refreshRem=a,v.rem2px=function(e){var t=parseFloat(e)*this.rem;return"string"==typeof e&&e.match(/rem$/)&&(t+="px"),t},v.px2rem=function(e){var t=parseFloat(e)/this.rem;return"string"==typeof e&&e.match(/px$/)&&(t+="rem"),t},window.remmoka=v}
+        (750,100,!0,!0);
+        /*
+        * designWidth, oneRem2Px, resetScaleFontSizeToDefault, useScaleFix1pxTooBold
+        * @param designWidth 设计稿宽度 一般来说iPhone6是750 如果缩小就变成了375px
+        * @param oneRem2Px 1rem对应多少px
+        * @param resetScaleFontSizeToDefault 是否重置Android因为系统放大或者缩小字体带来的影响
+        * @param useScaleFix1pxTooBold 是否通过meta标签的scale处理1px过于粗的问题
+        * */
+    </script>
+    <!--<link rel="stylesheet" href="./css/lib/swiper-3.4.2.min.css">-->
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <title>首页</title>
+</head>
+
+<body class="index">
+<!--导航-->
+<header class="index-header">
+    <div class="wrapper">
+        <ul class="navigation tabs">
+            <li class="part active recommend">个性推荐</li>
+            <li class="part strict">严选品牌</li>
+            <li class="part user">大V用户</li>
+        </ul>
+    </div>
+    <!-- banner图 -->
+    <div class="banner swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="./img/index/banner_01.jpg"></div>
+            <div class="swiper-slide"><img src="./img/index/banner_02.jpg"></div>
+            <div class="swiper-slide"><img src="./img/index/banner_03.jpg"></div>
+            <div class="swiper-slide"><img src="./img/index/banner_04.jpg"></div>
+            <div class="swiper-slide"><img src="./img/index/banner_05.jpg"></div>
+        </div>
+        <!-- 分页器 -->
+        <div class="swiper-pagination"></div>
+    </div>
+</header>
+
+<!-- 主要内容 -->
+<div class="selector-main">
+    <div class="swiper-wrapper">
+        <!--个性推荐主题内容-->
+        <div class="main-body-recommendation swiper-slide swiper-slide-visible swiper-slide-active stop-swiping">
+            <!--主体导航-->
+            <div class="mb-head">
+                <div class="mb-head-left">
+                    <img src="./img/index/wine_glass.png">
+                    <a href="./ranking_list_collect.html">私人酒窖</a>
+                </div>
+                <div class="mb-head-border"></div>
+                <div class="mb-head-right">
+                    <img src="./img/index/hot_list.png">
+                    <a href="./ranking_list">热榜</a>
+                </div>
+            </div>
+
+            <!--推荐酒单-->
+            <div class="mb-content">
+                <ul class="mb-content-list">
+                    <li class="mb-cl-title">
+                        <span>推荐酒单</span>
+                        <img src="./img/index/arrows.png">
+                    </li>
+                    <li class="mb-cl-recommend">
+                        <a href="#"><img src="./img/index/recommend.jpg"></a>
+                        <div class="mb-cl-recommend-introduction">
+                            <span>酒单名</span>
+                            <p>推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由 </p>
+                        </div>
+                    </li>
+                    <li class="mb-cl-recommend">
+                        <a href="#"><img src="./img/index/recommend.jpg"></a>
+                        <div class="mb-cl-recommend-introduction">
+                            <span>酒单名</span>
+                            <p>推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由 </p>
+                        </div>
+                    </li>
+                    <li class="mb-cl-recommend">
+                        <a href="#"><img src="./img/index/recommend.jpg"></a>
+                        <div class="mb-cl-recommend-introduction">
+                            <span>酒单名</span>
+                            <p>推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由 </p>
+                        </div>
+                    </li>
+                    <li class="mb-cl-recommend">
+                        <a href="#"><img src="./img/index/recommend.jpg"></a>
+                        <div class="mb-cl-recommend-introduction">
+                            <span>酒单名</span>
+                            <p>推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由 </p>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="mb-content-list">
+                    <li class="mb-cl-title">
+                        <span>推荐酒单</span>
+                        <img src="./img/index/arrows.png">
+                    </li>
+                    <li class="mb-cl-recommend">
+                        <a href="#"><img src="./img/index/recommend.jpg"></a>
+                        <div class="mb-cl-recommend-introduction">
+                            <span>酒单名</span>
+                            <p>推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由 </p>
+                        </div>
+                    </li>
+                    <li class="mb-cl-recommend">
+                        <a href="#"><img src="./img/index/recommend.jpg"></a>
+                        <div class="mb-cl-recommend-introduction">
+                            <span>酒单名</span>
+                            <p>推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由 </p>
+                        </div>
+                    </li>
+                    <li class="mb-cl-recommend">
+                        <a href="#"><img src="./img/index/recommend.jpg"></a>
+                        <div class="mb-cl-recommend-introduction">
+                            <span>酒单名</span>
+                            <p>推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由 </p>
+                        </div>
+                    </li>
+                    <li class="mb-cl-recommend">
+                        <a href="#"><img src="./img/index/recommend.jpg"></a>
+                        <div class="mb-cl-recommend-introduction">
+                            <span>酒单名</span>
+                            <p>推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由 </p>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="mb-content-list">
+                    <li class="mb-cl-title">
+                        <span>推荐酒单</span>
+                        <img src="./img/index/arrows.png">
+                    </li>
+                    <li class="mb-cl-recommend">
+                        <a href="#"><img src="./img/index/recommend.jpg"></a>
+                        <div class="mb-cl-recommend-introduction">
+                            <span>酒单名</span>
+                            <p>推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由 </p>
+                        </div>
+                    </li>
+                    <li class="mb-cl-recommend">
+                        <a href="#"><img src="./img/index/recommend.jpg"></a>
+                        <div class="mb-cl-recommend-introduction">
+                            <span>酒单名</span>
+                            <p>推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由 </p>
+                        </div>
+                    </li>
+                    <li class="mb-cl-recommend">
+                        <a href="#"><img src="./img/index/recommend.jpg"></a>
+                        <div class="mb-cl-recommend-introduction">
+                            <span>酒单名</span>
+                            <p>推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由 </p>
+                        </div>
+                    </li>
+                    <li class="mb-cl-recommend">
+                        <a href="#"><img src="./img/index/recommend.jpg"></a>
+                        <div class="mb-cl-recommend-introduction">
+                            <span>酒单名</span>
+                            <p>推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由 </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!--严选品牌主体内容-->
+        <div class="main-body-strict-selection swiper-slide stop-swiping">
+            <!--主体导航-->
+            <div class="mb-head tabs_2">
+                <div class="mb-head-left mb-head-list active">
+                    <img src="./img/index/red_wine_glass.png">
+                    <span>红葡萄酒</span>
+                </div>
+                <div class="mb-head-right mb-head-list">
+                    <img src="./img/index/white_wine_glass.png">
+                    <span>白葡萄酒</span>
+                </div>
+            </div>
+            <div class="mb-head-border"></div>
+
+            <!-- 品牌内容 -->
+            <div class="mb-content selector-wine">
+                <div class="swiper-wrapper">
+                    <!--红葡萄酒品牌-->
+                    <div class="red-wine swiper-slide swiper-slide-visible swiper-slide-active stop-swiping">
+                        <ul class="mb-content-list">
+                            <li class="mb-cl-title">
+                                <span>高分品牌</span>
+                                <img src="./img/index/arrows.png">
+                            </li>
+
+                        </ul>
+                        <ul class="mb-content-list">
+                            <li class="mb-cl-title">
+                                <span>高销量品牌</span>
+                                <img src="./img/index/arrows.png">
+                            </li>
+                        </ul>
+                        <ul class="mb-content-list">
+                            <li class="mb-cl-title">
+                                <span>高产品牌</span>
+                                <img src="./img/index/arrows.png">
+                            </li>
+                        </ul>
+                        <ul class="mb-content-list">
+                            <li class="mb-cl-title">
+                                <span>华夏品牌</span>
+                                <img src="./img/index/arrows.png">
+                            </li>
+                        </ul>
+                        <ul class="mb-content-list">
+                            <li class="mb-cl-title">
+                                <span>海外品牌</span>
+                                <img src="./img/index/arrows.png">
+                            <li/>
+                        </ul>
+                    </div>
+                    <!--白葡萄酒品牌-->
+                    <div class="white-wine swiper-slide stop-swiping">
+                        <ul class="mb-content-list">
+                            <li class="mb-cl-title">
+                                <span>高分品牌</span>
+                                <img src="./img/index/arrows.png">
+                            </li>
+                        </ul>
+                        <ul class="mb-content-list">
+                            <li class="mb-cl-title">
+                                <span>高销量品牌</span>
+                                <img src="./img/index/arrows.png">
+                            </li>
+                        </ul>
+                        <ul class="mb-content-list">
+                            <li class="mb-cl-title">
+                                <span>高产品牌</span>
+                                <img src="./img/index/arrows.png">
+                            </li>
+                        </ul>
+                        <ul class="mb-content-list">
+                            <li class="mb-cl-title">
+                                <span>华夏品牌</span>
+                                <img src="./img/index/arrows.png">
+                            </li>
+                        </ul>
+                        <ul class="mb-content-list">
+                            <li class="mb-cl-title">
+                                <span>海外品牌</span>
+                                <img src="./img/index/arrows.png">
+                            <li/>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--大V用户-->
+        <div class="main-body-V swiper-slide stop-swiping">
+            <!--主体导航-->
+            <div class="mb-head">
+                <div class="mb-head-left">
+                    <img src="./img/index/same_city_list.png">
+                    <a href="./ranking_list_city.html">同城榜</a>
+                </div>
+                <div class="mb-head-border"></div>
+                <div class="mb-head-right">
+                    <img src="./img/index/rangking_list.png">
+                    <a href="./ranking_list_focus.html">排行榜</a>
+                </div>
+            </div>
+
+            <!-- 好友动态 -->
+
+
+        </div>
+    </div>
+</div>
+
+<!-- 搜索 -->
+<div class="search-button"><a href="./search.html"><img src="./img/index/search_btn.png"></a></div>
+
+<div class="blank"></div>
+
+<!--底部导航-->
+<footer>
+    <ul class="footer-list">
+        <li>
+            <a href="./index.html"><img src="img/footer/home-y.png" style="width:0.58rem;height:0.52rem"></a>
+            <span>首页</span>
+        </li>
+        <li>
+            <a href="./message.html"><img src="img/footer/message.png" style="width:0.58rem;height:0.52rem"></a>
+            <span>消息</span>
+        </li>
+        <li>
+            <a href="./shopping_cart.html"><img src="img/footer/shoppingcart.png" style="width:0.58rem;height:0.52rem"></a>
+            <span>购物车</span>
+        </li>
+        <li>
+            <a href="./personal_center.html"><img src="img/footer/my.png" style="width:0.58rem;height:0.52rem"></a>
+            <span>我的</span>
+        </li>
+    </ul>
+</footer>
+
+
+<script src="./js/lib/jquery-1.10.1.min.js"></script>
+<script src="./js/lib/idangerous.swiper.min.js"></script>
+<script src="./js/index.js"></script>
+<script src="./js/flex_slider.js"></script>
+</body>
+</html>

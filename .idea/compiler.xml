@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="dream-jxw-common" />
+        <module name="dream-jxw-entity" />
+        <module name="dream-jxw-model" />
+        <module name="dream-jxw-service" />
+        <module name="dream-jxw-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="dream" target="1.8" />
+      <module name="dream-jxw-api" target="1.6" />
+      <module name="dream-jxw-common" target="1.8" />
+      <module name="dream-jxw-data" target="1.6" />
+      <module name="dream-jxw-entity" target="1.6" />
+      <module name="dream-jxw-model" target="1.8" />
+      <module name="dream-jxw-service" target="1.8" />
+      <module name="dream-jxw-web" target="1.8" />
+      <module name="jxw-api" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

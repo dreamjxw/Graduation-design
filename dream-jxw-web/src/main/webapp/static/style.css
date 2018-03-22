@@ -1,0 +1,462 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    color: #000;
+}
+body {
+    font-size: 0.12rem;
+    font-family: Arial,Verdana,Tahoma,"微软雅黑","黑体";
+    background: #fff;
+    margin: 0;
+    overflow-x: hidden;
+    /*水平方向隐藏掉多余部分，隐藏滚动条*/
+}
+p, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, form, table {
+    margin: 0;
+    padding: 0;
+}
+a, img {
+    border: none;
+}
+img {
+    vertical-align: middle;
+    /*基线对齐，主要用在内联块*/
+    border: 0;
+}
+li {
+    list-style: none;
+}
+i, em {
+    font-style: normal;
+    /*去掉斜体*/
+}
+a {
+    text-decoration: none;
+    color: #000000;
+    border: 0;
+}
+a:link {
+    text-decoration: none;
+    color: #000000;
+}
+a:hover {
+    text-decoration: none;
+    color: #000000;
+}
+a:visited {
+    text-decoration: none;
+    color: #000000;
+}
+a:active {
+    text-decoration: none;
+    color: #000000;
+}
+.clearfix:before, .clearfix:after {
+    display: table;
+    content: "";
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    zoom: 1;
+}
+.center-section {
+    font-family: "微软雅黑 Regular";
+}
+/*个人信息*/
+.center-section .center-information {
+    background-color: #d5ccb9;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    padding-left: 0.38rem;
+}
+.center-section .center-information .user-pic {
+    width: 1.8rem;
+    height: 1.8rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-border-radius: 50%;
+            border-radius: 50%;
+    overflow: hidden;
+}
+.center-section .center-information .details {
+    -webkit-box-flex: 3;
+    -webkit-flex: 3;
+        -ms-flex: 3;
+            flex: 3;
+    width: 5.04rem;
+    height: 2.61rem;
+    padding: 0.5rem 0 0 0.3rem;
+}
+.center-section .center-information .details p {
+    font-size: 0.24rem;
+    line-height: 0.26rem;
+}
+.center-section .center-information .details p#user-name {
+    font-size: 0.3rem;
+    color: #373b3e;
+    line-height: 0.88rem;
+    font-weight: bold;
+}
+.center-section .center-information .details p.follow-following a {
+    text-decoration: none;
+    font-size: 0.24rem;
+    color: #333333;
+    line-height: 0.28rem;
+}
+.center-section .center-information .details p.follow-following a.follow {
+    padding-right: 0.33rem;
+    border-right: 0.02rem #333333 solid;
+}
+.center-section .center-information .details p.follow-following a.following {
+    padding-left: 0.2rem;
+}
+.center-section .center-information .details .attention {
+    margin-top: 0.28rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 1.8rem;
+    height: 0.36rem;
+    border: 0.02rem solid #646464;
+    -webkit-border-radius: 0.09rem;
+            border-radius: 0.09rem;
+}
+.center-section .center-information .details .attention a {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    height: 0.21rem;
+}
+.center-section .center-information .details .attention a.add-attention {
+    -webkit-box-flex: 4;
+    -webkit-flex: 4;
+        -ms-flex: 4;
+            flex: 4;
+    font-size: 0.2rem;
+    line-height: 0.21rem;
+    color: #444444;
+    border-right: 0.02rem solid #646464;
+}
+.center-section .center-information .details .attention a.message {
+    -webkit-box-flex: 3;
+    -webkit-flex: 3;
+        -ms-flex: 3;
+            flex: 3;
+}
+/*购买的酒品*/
+.center-section .center-wine-class {
+    border-top: 0.02rem #e8b958 solid;
+}
+.center-section .center-wine-class .title {
+    padding-left: 0.27rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+.center-section .center-wine-class .title span.left {
+    width: 0;
+    height: 0;
+    border-top: 0.7rem #e8b958 solid;
+    border-left: 0.24rem transparent solid;
+}
+.center-section .center-wine-class .title span.right {
+    width: 0;
+    height: 0;
+    border-top: 0.7rem #e8b958 solid;
+    border-right: 0.24rem transparent solid;
+}
+.center-section .center-wine-class .title span.text {
+    height: 0.7rem;
+    line-height: 0.7rem;
+    padding: 0 0.2rem;
+    font-size: 0.26rem;
+    background-color: #e8b958;
+}
+.center-section ul.classify {
+    padding: 0.54rem 0 1.02rem 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+}
+.center-section ul.classify li {
+    width: 1.33rem;
+}
+.center-section ul.classify li p {
+    padding-top: 0.2rem;
+    color: #333333;
+    font-size: 0.22rem;
+    text-align: center;
+}
+.center-section ul.indent {
+    display: block;
+    width: 93%;
+    margin: 0 auto;
+    border-top: 0.02rem #999999 solid;
+}
+.center-section ul.indent >li {
+    border-bottom: 0.02rem #999999 solid;
+}
+.center-section ul.indent #shopping-information ul {
+    padding: 0.3rem 0 0.27rem 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+}
+.center-section ul.indent #shopping-information ul li a {
+    display: block;
+    width: 1.1rem;
+    text-decoration: none;
+    font-size: 0.22rem;
+    color: #444444;
+    text-align: center;
+}
+.center-section ul.indent #shopping-information ul li a span {
+    width: 1rem;
+    height: 0.8rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.center-section ul.indent #setting {
+    font-size: 0.24rem;
+    padding: 0.29rem 0 0.21rem 0.4rem;
+    color: #717171;
+}
+.center-section ul.indent .about-us {
+    font-size: 0.24rem;
+    padding: 0.29rem 0 0.21rem 0.4rem;
+    color: #717171;
+}
+.search-section .search {
+    height: 1.2rem;
+    background-color: #f8f8f8;
+    border-bottom: 0.01rem #999999 solid;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 0 0.25rem;
+}
+.search-section .search .return {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    padding-right: 0.1rem;
+}
+.search-section .search form {
+    -webkit-box-flex: 18;
+    -webkit-flex: 18;
+        -ms-flex: 18;
+            flex: 18;
+    padding: 0 0.18rem;
+    border: 0.01rem #eae8f5 solid;
+    -webkit-border-radius: 0.35rem;
+            border-radius: 0.35rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.search-section .search form .magnifying, .search-section .search form .delete {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.search-section .search form .text {
+    -webkit-box-flex: 17;
+    -webkit-flex: 17;
+        -ms-flex: 17;
+            flex: 17;
+    border: none;
+    background-color: #f8f8f8;
+    padding-left: 0.05rem;
+    line-height: 0.66rem;
+    font-size: 0.28rem;
+    outline: none;
+}
+.search-section .search .btn1 {
+    -webkit-box-flex: 3;
+    -webkit-flex: 3;
+        -ms-flex: 3;
+            flex: 3;
+    width: 1.06rem;
+    height: 0.66rem;
+    font-size: 0.28rem;
+    background-color: #d2c9b6;
+    border: 0;
+    -webkit-border-radius: 0.16rem;
+            border-radius: 0.16rem;
+    margin-left: 0.2rem;
+}
+.search-section .history {
+    padding: 0.57rem 0 0 0.3rem;
+}
+.search-section .history .title {
+    font-size: 0.3rem;
+    font-weight: bold;
+}
+.search-section .history .history-list {
+    padding-top: 0.43rem;
+}
+.search-section .history .history-list li {
+    margin-bottom: 0.3rem;
+    margin-right: 0.26rem;
+    display: inline-block;
+}
+.search-section .history .history-list li a {
+    display: inline-block;
+    height: 0.5rem;
+    padding-left: 0.22rem;
+    padding-right: 0.4rem;
+    font-size: 0.24rem;
+    color: #484855;
+    line-height: 0.5rem;
+    background-color: #eeedf4;
+    -webkit-border-radius: 0.25rem;
+            border-radius: 0.25rem;
+    position: relative;
+}
+.search-section .history .history-list li span {
+    position: absolute;
+    top: 0;
+    right: 0.14rem;
+}
+.search-section .tips {
+    display: none;
+    padding-left: 0.18rem;
+}
+.search-section .tips li {
+    border-bottom: 1px #eae8f5 solid;
+}
+.search-section .tips li a {
+    font-size: 0.24rem;
+    height: 0.65rem;
+    line-height: 0.65rem;
+    color: #b1b1b3;
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    z-index: 3;
+    width: 100%;
+    height: 1.07rem;
+    background-color: #373b3e;
+}
+footer .footer-list {
+    padding-top: 0.05rem;
+    height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+footer .footer-list li {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+footer .footer-list li a {
+    display: block;
+    height: 0.52rem;
+}
+footer .footer-list li span {
+    display: inline-block;
+    padding-top: 0.1rem;
+    font-size: 0.23rem;
+    color: #fff;
+    text-align: center;
+}
+

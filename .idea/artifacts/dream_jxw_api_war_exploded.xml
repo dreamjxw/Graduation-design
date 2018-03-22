@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="dream-jxw-api:war exploded">
+    <output-path>$PROJECT_DIR$/dream-jxw-api/target/dream-jxw-api</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="dream-jxw-api" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/dream-jxw-api/target/dream-jxw-api/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="dream-jxw-api/web/Web" />
+    </root>
+  </artifact>
+</component>

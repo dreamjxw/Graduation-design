@@ -1,0 +1,204 @@
+
+.center-section{
+  /*个人信息*/
+  .center-information{
+    background-color:#d5ccb9;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    padding-left:0.38rem;
+    .user-pic{
+      width:1.8rem;
+      height:1.8rem;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:50%;
+      overflow:hidden;
+      img{
+        width:1.86rem;
+        height:1.86rem;
+      }
+    }
+    .details{
+      flex:3;
+      width:5.04rem;
+      height:2.61rem;
+      padding:0.45rem 0 0.05rem 0.3rem;
+      p{
+        font-size:0.24rem;
+        line-height:0.26rem;
+      }
+      p.user-name{
+        font-size:0.3rem;
+        color:#373b3e;
+        line-height:0.88rem;
+        font-weight:bold;
+      }
+      p.follow-following{
+        a{
+          text-decoration:none;
+          font-size:0.24rem;
+          color:#333333;
+          line-height:0.28rem;
+        }
+        a.follow{
+          padding-right:0.33rem;
+          border-right:0.02rem #333333 solid;
+        }
+        a.following{
+          padding-left:0.2rem;
+        }
+      }
+      //加关注、私信
+      .attention{
+        margin-top:0.28rem;
+        display:flex;//别人主页隐藏该div；个人主页时设置为display:flex;
+        align-items:center;
+        width:1.8rem;
+        height:0.36rem;
+        border:0.02rem solid #646464;
+        border-radius:0.09rem;
+        a{
+          display:flex;
+          justify-content:center;
+          height:0.21rem;
+        }
+        a.add-attention{
+          flex:4;
+          font-size:0.2rem;
+          line-height:0.21rem;
+          color:#444444;
+          border-right:0.02rem solid #646464;
+        }
+        a.message{
+          flex:3;
+          img{
+            width:0.28rem;
+            height:0.21rem;
+          }
+        }
+      }
+    }
+  }
+  /*购买的酒品*/
+  .center-wine-class{
+    border-top:0.02rem #e8b958 solid;
+    //标题
+    .title{
+      padding-left:0.27rem;
+      display:flex;
+      span.left{
+        width:0;
+        height:0;
+        border-top:0.7rem #e8b958 solid;
+        border-left:0.24rem transparent solid;
+      }
+      span.right{
+        width:0;
+        height:0;
+        border-top:0.7rem #e8b958 solid;
+        border-right:0.24rem transparent solid;
+      }
+      span.text{
+        height:0.7rem;
+        line-height:0.7rem;
+        padding:0 0.2rem;
+        font-size:0.26rem;
+        background-color:#e8b958;
+      }
+    }
+  }
+  //分类
+  ul.classify{
+    padding:0.54rem 0 1.02rem 0;
+    display:flex;
+    justify-content:space-around;
+    li{
+      width:1.33rem;
+      img{
+        width:1.33rem;
+        height:1.33rem;
+      }
+      p{
+        padding-top:0.2rem;
+        color:#333333;
+        font-size:0.22rem;
+        text-align:center;
+        font-weight:bolder;
+        span{
+          color:#333333;
+
+        }
+      }
+    }
+  }
+  //订单
+  ul.indent{
+    display:block;
+    width:93%;
+    margin:0 auto;
+    border-top:0.02rem #999999 solid;
+    >li{
+      border-bottom:0.02rem #999999 solid;
+    }
+    .shopping-information{
+      ul{
+        padding:0.3rem 0 0.27rem 0;
+        display:flex;
+        justify-content:space-around;
+        li{
+          a{
+            display:block;
+            width:1.1rem;
+            text-decoration:none;
+            font-size:0.22rem;
+            color:#444444;
+            text-align:center;
+            span{
+              width:1rem;
+              height:0.8rem;
+              display:flex;
+              justify-content:center;
+              align-items:center;
+            }
+          }
+        }
+        li:nth-of-type(1){
+          img{
+            width:0.76rem;
+            height:0.57rem;
+          }
+        }
+        li:nth-of-type(2){
+          img{
+            width:0.51rem;
+            height:0.57rem;
+          }
+        }
+        li:nth-of-type(3){
+          img{
+            width:0.61rem;
+            height:0.61rem;
+          }
+        }
+        li:nth-of-type(4){
+          img{
+            width:0.64rem;
+            height:0.46rem;
+          }
+        }
+      }
+    }
+    .setting{
+      font-size:0.24rem;
+      padding:0.29rem 0 0.21rem 0.4rem;
+      color:#717171;
+    }
+    .about-us{
+      font-size:0.24rem;
+      padding:0.29rem 0 0.21rem 0.4rem;
+      color:#717171;
+    }
+  }
+}

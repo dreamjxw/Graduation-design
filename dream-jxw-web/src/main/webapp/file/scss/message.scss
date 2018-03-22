@@ -1,0 +1,48 @@
+.message {
+.first-news{
+  display:flex;
+}
+.left-head-portrait{
+  flex:1;
+  height:1.90rem;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  img{
+    width:1.47rem;
+    height:1.47rem;
+    border-radius:50%;
+  }
+}
+.right-box{
+  flex:3;
+  //width:5.58rem;
+  padding-right:0.57rem;
+  border-bottom:0.01rem solid #ccc;
+  height:1.90rem;
+}
+.nick-name{
+  padding-top:0.23rem;
+  font-size:0.40rem;
+  color:#373b3e;
+}
+.identity{
+  margin-left:0.24rem;
+  margin-top:0.34rem;
+  width:0.65rem;
+  height:0.25rem;
+  color:#e8b958;
+  font-size:0.19rem;
+  border:0.02rem solid #959595;
+  border-radius:0.10rem;
+  line-height:0.25rem;
+  text-align:center;
+}
+.sender-name{
+  line-height:0.89rem;
+}
+.friend-news{
+  color:#afafaf;
+  font-size:0.33rem;
+}
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jxw.design.dao.slave.WineStockSlaveDao">
+    <resultMap id="BaseResultMap" type="com.jxw.design.model.WineStock">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="wine_id" property="wineId" jdbcType="BIGINT"/>
+        <result column="wine_stock" property="wineStock" jdbcType="BIGINT"/>
+        <result column="wine_real" property="wineReal" jdbcType="BIGINT"/>
+        <result column="wine_always_stock" property="wineAlwaysStock" jdbcType="BIGINT"/>
+        <result column="wine_always_real" property="wineAlwaysReal" jdbcType="BIGINT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, wine_id, wine_stock, wine_real, wine_always_stock, wine_always_real
+    </sql>
+    <select id="selectByWineId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_wine_stock
+        where wine_id = #{wineId}
+    </select>
+
+    <select id="selectAllWineStock" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_wine_stock
+    </select>
+</mapper>

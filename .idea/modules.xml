@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/dream.iml" filepath="$PROJECT_DIR$/dream.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dream-jxw-common/dream-jxw-common.iml" filepath="$PROJECT_DIR$/dream-jxw-common/dream-jxw-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dream-jxw-model/dream-jxw-model.iml" filepath="$PROJECT_DIR$/dream-jxw-model/dream-jxw-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dream-jxw-service/dream-jxw-service.iml" filepath="$PROJECT_DIR$/dream-jxw-service/dream-jxw-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dream-jxw-web/dream-jxw-web.iml" filepath="$PROJECT_DIR$/dream-jxw-web/dream-jxw-web.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="dream-jxw-web:war">
+    <output-path>$PROJECT_DIR$/dream-jxw-web/target</output-path>
+    <root id="archive" name="dream-jxw-web.war">
+      <element id="artifact" artifact-name="dream-jxw-web:war exploded" />
+    </root>
+  </artifact>
+</component>

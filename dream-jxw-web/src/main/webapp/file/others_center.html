@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta name="keywords" content=""/>
+  <meta name="description" content=""/>
+  <meta name="format-detection" content="telephone=no"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>我的好友</title>
+    <script src="js/lib/jquery-1.10.1.min.js"></script>
+</head>
+<link rel="stylesheet" href="css/style.css">
+<script>
+    !function(e,t,i,r){function n(){var e=document.querySelector("head"),t=document.createElement("div");t.style.width="1rem",t.style.display="none",e.appendChild(t);var i=parseFloat(window.getComputedStyle(t,null).width);return e.removeChild(t),i}function a(){var r=d.getBoundingClientRect().width;r/c>768&&(r=768*c);var n=r/e*t;if(!i){var a=p/16;n/=a}d.style.fontSize=n+"px",v.rem=n}var m,o=window,l=o.document,d=l.documentElement,s=l.querySelector('meta[name="viewport"]'),c=0,u=0,p=n(),v={};if(s){var h=s.getAttribute("content").match(/initial\-scale=([\d\.]+)/);h&&(console.warn("将根据已有的meta标签来设置缩放比例"),u=parseFloat(h[1]),c=parseInt(1/u))}if(!c&&!u){var f=o.devicePixelRatio;r?(c=f>=3&&(!c||c>=3)?3:f>=2&&(!c||c>=2)?2:1,u=1/c):(c=1,u=1/c)}if(d.setAttribute("data-dpr",c),!s)if(s=l.createElement("meta"),s.setAttribute("name","viewport"),s.setAttribute("content","width=device-width, initial-scale="+u+", maximum-scale="+u+", minimum-scale="+u+", user-scalable=no"),d.firstElementChild)d.firstElementChild.appendChild(s);else{var w=l.createElement("div");w.appendChild(s),l.write(w.innerHTML)}o.addEventListener("resize",function(){clearTimeout(m),m=setTimeout(a,300)},!1),o.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(m),m=setTimeout(a,300))},!1),a(),v.dpr=c,v.refreshRem=a,v.rem2px=function(e){var t=parseFloat(e)*this.rem;return"string"==typeof e&&e.match(/rem$/)&&(t+="px"),t},v.px2rem=function(e){var t=parseFloat(e)/this.rem;return"string"==typeof e&&e.match(/px$/)&&(t+="rem"),t},window.remmoka=v}
+    (750,100,!0,!0);
+    /*
+     * designWidth, oneRem2Px, resetScaleFontSizeToDefault, useScaleFix1pxTooBold
+     * @param designWidth 设计稿宽度 一般来说iPhone6是750 如果缩小就变成了375px
+     * @param oneRem2Px 1rem对应多少px
+     * @param resetScaleFontSizeToDefault 是否重置Android因为系统放大或者缩小字体带来的影响
+     * @param useScaleFix1pxTooBold 是否通过meta标签的scale处理1px过于粗的问题
+     * */
+</script>
+<body>
+    <section class="center-section">
+        <div class="center-information">
+          <div class="user-pic">
+              <img src="img/personal_center/head_pic.jpg"/><!--aaaaaaaaaaaaaaaaaaaaaaaaaa-->
+          </div>
+          <div class="details">
+              <p class="user-name">克利夫兰</p><!--userName后台获取-->
+              <p class="follow-following">
+                  <!--跳转到关注粉丝页面------------------------->
+                  <a href="#" class="follow">关注&nbsp;&nbsp;<span class="follow-num">20</span></a>
+                  <a href="#" class="following">粉丝&nbsp;&nbsp;<span class="following-num">60</span></a><!--后台获取-->
+              </p><!--后台获取-->
+              <div class="attention">
+                  <a class="add-attention">+关注</a>
+                  <!--跳转到消息页面---------------->
+                  <a class="message" href="#"><img src="img/personal_center/message.png"/></a>
+              </div>
+          </div>
+        </div>
+        <div class="center-wine-class">
+            <div class="title">
+                <span class="left"></span>
+                <span class="text">ta所购买的酒品中</span>
+                <span class="right"></span>
+            </div>
+            <ul class="classify">
+                <li>
+                  <img src="img/personal_center/origin.png"/>
+                  <p><span class="place-ratio">90%</span><br>产自<br><span class="place">意大利</span></p>
+                </li>
+                <li>
+                  <img src="img/personal_center/brand.png"/>
+                  <p><span class="brand-ratio">60%</span><br>为<br><span class="brand">威士忌</span></p>
+                </li>
+                <li>
+                  <img src="img/personal_center/year.png"/>
+                  <p><span class="year-ratio">90%</span><br>产自<br><span class="year">60年代</span></p>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <footer>
+        <ul class="footer-list">
+            <li>
+                <a href="./index.html "><img src="img/footer/home.png" style="width:0.55rem;height:0.51rem"></a>
+                <span>首页</span>
+            </li>
+            <li>
+                <a href="./message.html"><img src="img/footer/message.png" style="width:0.58rem;height:0.52rem"></a>
+                <span>消息</span>
+            </li>
+            <li>
+                <a href="./shopping_cart.html"><img src="img/footer/shoppingcart.png" style="width:0.55rem;height:0.51rem"></a>
+                <span>购物车</span>
+            </li>
+            <li>
+                <a href="./personal_center.html"><img src="img/footer/my-y.png" style="width:0.41rem;height:0.49rem"></a>
+                <span>我的</span>
+            </li>
+        </ul>
+    </footer>
+    <script src="js/lib/jquery-1.10.1.min.js"></script>
+    <script src="./js/others_center.js"></script>
+</body>
+</html>

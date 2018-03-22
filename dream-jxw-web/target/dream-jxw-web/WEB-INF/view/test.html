@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="/static/jquery-1.8.3.js"></script>
+<script>
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://oomforjmm.imwork.net:12965/personal/do",
+        "type": "POST",
+        "headers": {
+            "content-type": "application/json",
+            "cache-control": "no-cache",
+        },
+        "processData": false,
+        "data": "{\n\t\"openid\":\"oEqFyvx8TdK-ETuv8esDuRJyDx7M\"\n\n}"
+    }
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+    });
+</script>
+    Test-------123-----HTML<br>
+</body>
+</html>

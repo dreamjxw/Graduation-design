@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jxw.design.dao.slave.UserAttentionSlaveDao">
+    <resultMap id="BaseResultMap" type="com.jxw.design.model.UserAttention">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="attention_id" property="attentionId" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_id, attention_id
+    </sql>
+    <select id="selectFans" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT user_id
+        FROM tb_attention
+        WHERE attention_id = #{userId}
+    </select>
+
+    <select id="selectAttention" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT attention_id
+        FROM tb_attention
+        WHERE user_id = #{userId}
+    </select>
+    <select id="countFans" parameterType="java.lang.String" resultType="long">
+        SELECT count(*)
+        FROM tb_attention
+        WHERE attention_id = #{userId}
+    </select>
+    <select id="countAttention" parameterType="java.lang.String" resultType="long">
+        SELECT count(*)
+        FROM tb_attention
+        WHERE user_id = #{userId}
+    </select>
+    <select id="selectRepeatAttention" resultMap="BaseResultMap">
+        SELECT *
+        FROM tb_attention
+        WHERE user_id = #{userAttention.userId} AND attention_id = #{userAttention.attentionId}
+    </select>
+</mapper>

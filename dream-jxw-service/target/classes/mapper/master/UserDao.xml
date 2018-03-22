@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jxw.design.dao.master.UserDao">
+    <resultMap id="BaseResultMap" type="com.jxw.design.model.User">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="user_sex" property="userSex" jdbcType="VARCHAR"/>
+        <result column="user_city" property="userCity" jdbcType="VARCHAR"/>
+        <result column="user_province" property="userProvince" jdbcType="VARCHAR"/>
+        <result column="user_country" property="userCountry" jdbcType="VARCHAR"/>
+        <result column="user_headimg" property="userHeadImg" jdbcType="VARCHAR"/>
+        <result column="user_power" property="userPower" jdbcType="VARCHAR"/>
+        <result column="user_fans_num" property="userFansNum" jdbcType="INTEGER"/>
+        <result column="user_attention_num" property="userAttentionNum" jdbcType="INTEGER"/>
+        <result column="user_level" property="userLevel" jdbcType="INTEGER"/>
+        <result column="user_account" property="userAccount" jdbcType="DOUBLE"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_id, user_name, user_sex, user_city, user_province, user_country, user_headimg,
+        user_power, user_fans_num, user_attention_num, user_level,user_account
+    </sql>
+
+    <insert id="insertSelective" parameterType="com.jxw.design.model.User">
+        insert into tb_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="user.userId != null">
+                user_id,
+            </if>
+            <if test="user.userName != null">
+                user_name,
+            </if>
+            <if test="user.userSex != null">
+                user_sex,
+            </if>
+            <if test="user.userCity != null">
+                user_city,
+            </if>
+            <if test="user.userProvince != null">
+                user_province,
+            </if>
+            <if test="user.userCountry != null">
+                user_country,
+            </if>
+            <if test="user.userHeadImg != null">
+                user_headimg,
+            </if>
+            <if test="user.userPower != null">
+                user_power,
+            </if>
+            <if test="user.userFansNum != null">
+                user_fans_num,
+            </if>
+            <if test="user.userAttentionNum != null">
+                user_attention_num,
+            </if>
+            <if test="user.userLevel != null">
+                user_level,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="user.userId != null">
+                #{user.userId,jdbcType=VARCHAR},
+            </if>
+            <if test="user.userName != null">
+                #{user.userName,jdbcType=VARCHAR},
+            </if>
+            <if test="user.userSex != null">
+                #{user.userSex,jdbcType=VARCHAR},
+            </if>
+            <if test="user.userCity != null">
+                #{user.userCity,jdbcType=VARCHAR},
+            </if>
+            <if test="user.userProvince != null">
+                #{user.userProvince,jdbcType=VARCHAR},
+            </if>
+            <if test="user.userCountry != null">
+                #{user.userCountry,jdbcType=VARCHAR},
+            </if>
+            <if test="user.userHeadImg != null">
+                #{user.userHeadImg,jdbcType=VARCHAR},
+            </if>
+            <if test="user.userPower != null">
+                #{user.userPower,jdbcType=VARCHAR},
+            </if>
+            <if test="user.userFansNum != null">
+                #{user.userFansNum,jdbcType=INTEGER},
+            </if>
+            <if test="user.userAttentionNum != null">
+                #{user.userAttentionNum,jdbcType=INTEGER},
+            </if>
+            <if test="user.userLevel != null">
+                #{user.userLevel,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateUserRank">
+        update tb_user
+        <set>
+            <if test="userLevel != null">
+                user_level = #{userLevel},
+            </if>
+        </set>
+        where user_id = #{userId}
+    </update>
+
+    <update id="updateAttFansNumber">
+        UPDATE tb_user
+        <set>
+            <if test="attentionNumber != null">
+                user_attention_num = #{attentionNumber},
+            </if>
+            <if test="fansNumber != null">
+                user_fans_num = #{fansNumber}
+            </if>
+        </set>
+        where user_id = #{userId}
+    </update>
+
+    <update id="updateUserAccount">
+        UPDATE tb_user
+        <set>
+            <if test="userAccount != null">
+                user_account = #{userAccount},
+            </if>
+        </set>
+        where user_id = #{userId}
+    </update>
+
+</mapper>

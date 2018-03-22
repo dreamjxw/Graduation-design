@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jxw.design.dao.master.PostDao" >
+    <resultMap id="BaseResultMap" type="com.jxw.design.model.Post" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="user_id" property="userId" jdbcType="VARCHAR" />
+        <result column="post_name" property="postName" jdbcType="VARCHAR" />
+        <result column="post_phone" property="postPhone" jdbcType="VARCHAR" />
+        <result column="post_address" property="postAddress" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, user_id, post_name, post_phone, post_address
+    </sql>
+
+    <delete id="deletePostInfo" parameterType="java.lang.Integer" >
+        delete from tb_post
+        where id = #{post.id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertPostInfo" parameterType="com.jxw.design.model.Post" >
+        insert into tb_post
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="post.userId != null" >
+                user_id,
+            </if>
+            <if test="post.postName != null" >
+                post_name,
+            </if>
+            <if test="post.postPhone != null" >
+                post_phone,
+            </if>
+            <if test="post.postAddress != null" >
+                post_address
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="post.userId != null" >
+                #{post.userId,jdbcType=VARCHAR},
+            </if>
+            <if test="post.postName != null" >
+                #{post.postName,jdbcType=VARCHAR},
+            </if>
+            <if test="post.postPhone != null" >
+                #{post.postPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="post.postAddress != null" >
+                #{post.postAddress,jdbcType=VARCHAR}
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updatePostInfo" parameterType="com.jxw.design.model.Post" >
+        update tb_post
+        <set >
+            <if test="post.postName != null" >
+                post_name = #{post.postName,jdbcType=VARCHAR},
+            </if>
+            <if test="post.postPhone != null" >
+                post_phone = #{post.postPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="post.postAddress != null" >
+                post_address = #{post.postAddress,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where id = #{post.id,jdbcType=INTEGER}
+    </update>
+</mapper>

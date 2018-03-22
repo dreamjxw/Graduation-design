@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jxw.design.dao.slave.OrderSlaveDao">
+    <resultMap id="BaseResultMap" type="com.jxw.design.model.Order">
+        <id column="order_id" property="orderId" jdbcType="BIGINT"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="order_details" property="orderGoods" typeHandler="OrderGoodsHandler"/>
+        <result column="order_totalprice" property="wineTotalPrice" jdbcType="DOUBLE"/>
+        <result column="order_date_start" property="orderDateStart" jdbcType="TIMESTAMP"/>
+        <result column="order_date_end" property="orderDateEnd" jdbcType="TIMESTAMP"/>
+        <result column="pay_status_id" property="payStatusId" jdbcType="TINYINT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        order_id, user_id, order_details, order_totalprice, order_date_start, order_date_end, pay_status_id
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_order
+        where order_id = #{orderId}
+    </select>
+
+    <select id="countUserBuyTotal" resultType="long" parameterType="string">
+        SELECT count(*)
+        FROM tb_order
+        WHERE user_id = #{userId}
+    </select>
+
+    <select id="selectByUserId" resultMap="BaseResultMap" parameterType="string">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_order
+        where user_id = #{userId}
+    </select>
+
+    <select id="selectByUserIdNearToday" resultMap="BaseResultMap" parameterType="string">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_order
+        where user_id = #{userId}
+        order by order_date_start desc
+        limit 6
+    </select>
+</mapper>

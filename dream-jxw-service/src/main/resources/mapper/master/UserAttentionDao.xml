@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jxw.design.dao.master.UserAttentionDao">
+    <resultMap id="BaseResultMap" type="com.jxw.design.model.UserAttention">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="attention_id" property="attentionId" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id, user_id, attention_id
+    </sql>
+
+
+    <delete id="cancelAttention" parameterType="com.jxw.design.model.UserAttention">
+        DELETE FROM tb_attention
+        WHERE user_id = #{userAttention.userId}
+    </delete>
+
+    <insert id="addAttention" parameterType="com.jxw.design.model.UserAttention">
+        insert into tb_attention
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userAttention.userId != null">
+                user_id,
+            </if>
+            <if test="userAttention.attentionId != null">
+                attention_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userAttention.userId != null">
+                #{userAttention.userId,jdbcType=VARCHAR},
+            </if>
+            <if test="userAttention.attentionId != null">
+                #{userAttention.attentionId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+</mapper>
