@@ -1,6 +1,7 @@
 package com.jxw.design.controller;
 
 import com.google.common.base.Preconditions;
+import com.google.common.base.Strings;
 import com.google.gson.Gson;
 import com.jxw.design.model.User;
 import com.jxw.design.model.req.UserRankReq;
@@ -48,10 +49,10 @@ public class UserRankController {
             logger.warn("【用户排行】：返回排行榜为空，请求Id：", userRankReq.getUserId());
             return Result.buildFailedResult(-1, "排行榜为空");
         } catch (IllegalArgumentException ie) {
-            logger.error("【用户排行】非法参数异常",ie);
+            logger.error("【用户排行】非法参数异常", ie);
             return Result.buildFailedResult(-1, "非法参数异常");
         } catch (Exception e) {
-            logger.error("【用户排行】获取用户排行榜时出现异常",e);
+            logger.error("【用户排行】获取用户排行榜时出现异常", e);
             return Result.buildFailedResult(-1, "服务器开小差了~~  请稍后重试");
         }
     }
@@ -63,12 +64,16 @@ public class UserRankController {
             Preconditions.checkArgument(userRankReq.getUserId() != null, "用户ID不可为空");
             logger.info("【用户排行】：请求获取用户排行榜，请求参数:{}", new Gson().toJson(userRankReq));
             User userInfo = userInfoService.obtainUserInfo(userRankReq.getUserId());
-            if (userInfo==null){
+            if (userInfo == null) {
                 logger.info("【用户排行】查询不到该用户信息");
-                return Result.buildFailedResult(-1,"该用户不存在");
+                return Result.buildFailedResult(-1, "该用户不存在");
             }
             User user = new User();
             user.setUserId(userRankReq.getUserId());
+            if (Strings.isNullOrEmpty(userInfo.getUserCity())) {
+                logger.error("【用户排行】该用户未设置所在城市，无法生成同城榜");
+                return Result.buildFailedResult(-1, "该用户未设置所在城市，无法生成同城榜");
+            }
             user.setUserCity(userInfo.getUserCity());
             List<UserRankListResp> userRankListByCityResps = userRankService.rankingListByCity(user);
             if (!CollectionUtils.isEmpty(userRankListByCityResps)) {
@@ -78,10 +83,10 @@ public class UserRankController {
             logger.warn("【用户排行】：返回同城排行榜为空，请求Id：", user.getUserId());
             return Result.buildFailedResult(-1, "同城排行榜为空");
         } catch (IllegalArgumentException ie) {
-            logger.error("【用户排行】非法参数异常",ie);
+            logger.error("【用户排行】非法参数异常", ie);
             return Result.buildFailedResult(-1, "非法参数异常");
         } catch (Exception e) {
-            logger.error("【用户排行】获取用户同城排行榜时出现异常",e);
+            logger.error("【用户排行】获取用户同城排行榜时出现异常", e);
             return Result.buildFailedResult(-1, "服务器开小差了~~  请稍后重试");
         }
     }

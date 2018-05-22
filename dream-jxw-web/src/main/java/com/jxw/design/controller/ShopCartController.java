@@ -143,4 +143,26 @@ public class ShopCartController {
             return Result.buildFailedResult(-1, "服务器开小差了~~  请稍后重试");
         }
     }
+    @RequestMapping(value ="keepDate.htm", method = RequestMethod.POST)
+    @ResponseBody
+    public Result keepDate(@RequestBody String userId) {
+        try {
+            String str = new StringBuffer(userId).deleteCharAt(userId.length() - 1).toString();
+            Preconditions.checkArgument(userId != null, "用户ID不可为空");
+            logger.info("【购物车系统】请求查询购物车信息，请求数据:{}", new Gson().toJson(str));
+            List<ShopCart> shopCarts = shopCartService.selectByUserId(str);
+            if (CollectionUtils.isEmpty(shopCarts)) {
+                logger.info("【购物车系统】该用户购物车中无任何商品");
+                return Result.buildFailedResult(-1, "您的购物车空空如也，快去选购吧~~~");
+            }
+            logger.info("购物车查询结果,:{}", new Gson().toJson(shopCarts));
+            return Result.buildSuccessResult(shopCarts);
+        } catch (IllegalArgumentException ie) {
+            logger.error("【购物车系统】非法参数异常",ie);
+            return Result.buildFailedResult(-1, "非法参数异常");
+        } catch (Exception e) {
+            logger.error("【购物车系统】查询购物车信息时出现异常",e);
+            return Result.buildFailedResult(-1, "服务器开小差了~~  请稍后重试");
+        }
+    }
 }

@@ -73,7 +73,6 @@ public class OrderController {
             order.setWineTotalPrice(wineTotalPrice);
             order.setOrderGoods(orderGoods);
             order.setOrderDateStart(DateTime.now().toDate());
-
             int i = orderService.insertOrder(order);
             if (i > 0) {
                 logger.info("【订单系统】添加订单成功");

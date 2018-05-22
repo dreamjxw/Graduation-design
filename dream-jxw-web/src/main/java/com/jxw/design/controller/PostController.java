@@ -103,9 +103,10 @@ public class PostController {
     @ResponseBody
     public Result selectPostInfo(@RequestBody String userId) {
         try {
+            String str = new StringBuffer(userId).deleteCharAt(userId.length() - 1).toString();
             Preconditions.checkArgument(userId != null, "用户Id不能为空");
             logger.info("【收货信息】请求查询收货信息，请求数据:{}", new Gson().toJson(userId));
-            List<Post> postList = postService.selectPostInfo(userId);
+            List<Post> postList = postService.selectPostInfo(str);
             if (CollectionUtils.isEmpty(postList)) {
                 logger.warn("【收货信息】查询到收货信息为空");
                 return Result.buildFailedResult(-1, "您没有收货信息，请先添加...");

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+ 	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="icon" href="#">
+	<script>
+        !function(e,t,i,r){function n(){var e=document.querySelector("head"),t=document.createElement("div");t.style.width="1rem",t.style.display="none",e.appendChild(t);var i=parseFloat(window.getComputedStyle(t,null).width);return e.removeChild(t),i}function a(){var r=d.getBoundingClientRect().width;r/c>768&&(r=768*c);var n=r/e*t;if(!i){var a=p/16;n/=a}d.style.fontSize=n+"px",v.rem=n}var m,o=window,l=o.document,d=l.documentElement,s=l.querySelector('meta[name="viewport"]'),c=0,u=0,p=n(),v={};if(s){var h=s.getAttribute("content").match(/initial\-scale=([\d\.]+)/);h&&(console.warn("将根据已有的meta标签来设置缩放比例"),u=parseFloat(h[1]),c=parseInt(1/u))}if(!c&&!u){var f=o.devicePixelRatio;r?(c=f>=3&&(!c||c>=3)?3:f>=2&&(!c||c>=2)?2:1,u=1/c):(c=1,u=1/c)}if(d.setAttribute("data-dpr",c),!s)if(s=l.createElement("meta"),s.setAttribute("name","viewport"),s.setAttribute("content","width=device-width, initial-scale="+u+", maximum-scale="+u+", minimum-scale="+u+", user-scalable=no"),d.firstElementChild)d.firstElementChild.appendChild(s);else{var w=l.createElement("div");w.appendChild(s),l.write(w.innerHTML)}o.addEventListener("resize",function(){clearTimeout(m),m=setTimeout(a,300)},!1),o.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(m),m=setTimeout(a,300))},!1),a(),v.dpr=c,v.refreshRem=a,v.rem2px=function(e){var t=parseFloat(e)*this.rem;return"string"==typeof e&&e.match(/rem$/)&&(t+="px"),t},v.px2rem=function(e){var t=parseFloat(e)/this.rem;return"string"==typeof e&&e.match(/px$/)&&(t+="rem"),t},window.remmoka=v}
+        (750,100,!0,!0);
+        /*
+         * designWidth, oneRem2Px, resetScaleFontSizeToDefault, useScaleFix1pxTooBold
+         * @param designWidth 设计稿宽度 一般来说iPhone6是750 如果缩小就变成了375px
+         * @param oneRem2Px 1rem对应多少px
+         * @param resetScaleFontSizeToDefault 是否重置Android因为系统放大或者缩小字体带来的影响
+         * @param useScaleFix1pxTooBold 是否通过meta标签的scale处理1px过于粗的问题
+         * */
+    </script>    	
+	<title>订单详情</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<header  class="order-header">
+		<div class="personal-information">
+			<div class="name">收货人：萌萌</div>
+			<div class="number">12345678901</div>
+		</div>
+		<div class="shipping-address">
+			<div class="position">
+				<img src="img/order/position.png" style="width:0.5rem;height:0.6rem">
+			</div>	 
+			<div class="address">收货地址：陕西省西安市长安区郭杜镇子午街道西安邮电
+			大学西区
+			</div>
+			<div class="arrow">
+				<img src="img/order/arrow.png" style="width:0.2rem;height:0.3rem">
+			</div>
+		</div>
+		<div class="remarks">
+			（收货不便时，可选择免费代收货服务）
+		</div>
+	</header>
+	<section class="order-goods">
+		<div class="winePicture">
+			<img src="img/order/winePicture.png" style="width:1.6rem;height:1.6rem">
+		</div>
+		<div class="commodity-information">
+			<p class="brief-introduction">【万村同购  清爽一夏】迪悠2017夏季新款韩版绑带牛
+				仔半身裙半身裙半身裙半身裙半身裙半...
+			</p>
+			<p class="wineGrade">评分 8分</p>
+			<div class="order-infor">
+				<div class="winePrice">￥ 88.00</div>
+				<div class="order-number">X 1</div>
+			</div>
+		</div>
+	</section>
+	<section class="order-section">
+		<div class="distribution">
+			<div class="way">
+				配送方式
+			</div>
+			<div class="fast-mail">
+				快递 免邮
+				<img src="img/order/arrow.png" style="width:0.2rem;height:0.3rem">
+			</div>
+		</div>
+		<div class="fright">
+			<div class="insurance">运费险</div>
+			<img src="img/order/arrow.png" style="width:0.2rem;height:0.3rem">
+		</div>
+		<div class="reference">
+			<div class="know">运费险投保须知</div>
+			<div class="leave-word">
+				<div class="bull-position">买家留言 ：</div>
+				<div class="site">选填：对本次交易的说明（建议填写已和商家...</div>
+			</div>
+		</div>
+		<div class="subtotal">
+			<div class="number">共<span>1</span>件商品</div>
+			<div class="price">小计：<span class="winePrice">￥ 88.00</span></div>
+		</div>
+		<div class="card">
+			<div class="card-coupons">卡券</div>
+			<div class="check"></div>
+		</div>
+	</section>
+	<div class="order-footer">
+		<div class="total">合计：<span>￥88.00</span></div>
+		<div class="submit">提交订单</div>
+	</div>
+	<script type="text/javascript" src="js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="js/order.js"></script>
+</body>
+</html>

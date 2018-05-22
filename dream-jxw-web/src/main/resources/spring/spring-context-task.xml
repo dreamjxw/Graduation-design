@@ -27,8 +27,8 @@
     </bean>
     <bean id="CheckStockTaskDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="CheckStockTaskDetail"/>
-        <property name="cronExpression" value="0/10 * * * * ?"/>
-        <!--<property name="cronExpression" value="0 0 0 * * ?"/>-->
+        <!--<property name="cronExpression" value="0/10 * * * * ?"/>-->
+        <property name="cronExpression" value="0 0 0 * * ?"/>
     </bean>
 
 
@@ -46,7 +46,7 @@
     </bean>
     <bean id="UpdateWineScoreTaskDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="UpdateWineScoreTaskDetail"/>
-        <property name="cronExpression" value="0/10 * * * * ?"/>
-        <!--<property name="cronExpression" value="0 0 0 * * ?"/>-->
+        <!--<property name="cronExpression" value="0/10 * * * * ?"/>-->
+        <property name="cronExpression" value="0 0 0 * * ?"/>
     </bean>
 </beans>

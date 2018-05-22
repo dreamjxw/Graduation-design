@@ -50,9 +50,9 @@ public class RecommendServiceImpl implements RecommendService {
         logger.info("【个性推荐】获取推荐酒单，请求参数userId:{}", new Gson().toJson(userId));
         List<Order> orders = orderSlaveDao.selectByUserIdNearToday(userId);
         if (CollectionUtils.isEmpty(orders)) {
-            logger.info("【个性推荐】该用户无下单记录，推荐评分最高的10种酒品");
+            logger.info("【个性推荐】该用户无下单记录，推荐评分最高的6种酒品");
             List<Wine> wines = wineSlaveDao.selectWineScoreDesc();
-            List<Wine> subList = wines.subList(0, 10);
+            List<Wine> subList = wines.subList(0, recommendNum);
             return subList;
         }
         List<Long> orderGoodsIdList = Lists.newArrayList();
@@ -69,7 +69,7 @@ public class RecommendServiceImpl implements RecommendService {
         Map<Integer, Integer> sortMapByValue = sortMapByValue(data);
         Set<Integer> keySet = sortMapByValue.keySet();
         Integer[] array = keySet.toArray(new Integer[keySet.size()]);
-        int length = array.length > 6 ? 6 : array.length;
+        int length = array.length > recommendNum ? recommendNum : array.length;
         Integer[] copyOfRange = Arrays.copyOfRange(array, array.length - length, array.length);
         List<Wine> wines = wineSlaveDao.selectWineByWineIdBatch(copyOfRange);
         if (wines.size() < recommendNum) {
@@ -89,7 +89,7 @@ public class RecommendServiceImpl implements RecommendService {
         if (CollectionUtils.isEmpty(orderList)) {
             logger.info("【个性推荐】该用户无下单记录，推荐评分最高的6种酒品");
             List<Wine> wines = wineSlaveDao.selectWineScoreDesc();
-            List<Wine> subList = wines.subList(0, 6);
+            List<Wine> subList = wines.subList(0, recommendNum);
             return subList;
         }
         List<Long> orderGoodsIdList = Lists.newArrayList();
@@ -110,7 +110,7 @@ public class RecommendServiceImpl implements RecommendService {
         if (wine != null) {
             logger.warn("【个性推荐】返回酒品列表为空,推荐评分最高的6种酒品");
             List<Wine> winesA = wineSlaveDao.selectWineScoreDesc();
-            List<Wine> subList = winesA.subList(0, 6);
+            List<Wine> subList = winesA.subList(0, recommendNum);
             return subList;
         }
         String wineClass = wine.getWineClass();

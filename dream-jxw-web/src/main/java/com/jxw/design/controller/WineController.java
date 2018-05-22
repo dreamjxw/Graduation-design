@@ -42,9 +42,11 @@ public class WineController {
 
     @RequestMapping(value = "searchWine.htm", method = RequestMethod.POST)
     @ResponseBody
-    public Result searchWine(@RequestBody String content) {
+    public Result searchWine(@RequestBody String contents) {
         try {
-            Preconditions.checkArgument(content != null, "搜索内容不能为空");
+            logger.info("【搜索系统】请求搜索酒品，前端传递的参数:{}", new Gson().toJson(contents));
+            Preconditions.checkArgument(contents != null, "搜索内容不能为空");
+            String content = new StringBuffer(contents).deleteCharAt(contents.length() - 1).toString();
             logger.info("【搜索系统】请求搜索酒品，请求参数:{}", new Gson().toJson(content));
             List<Wine> wines = wineService.searchWine(content);
             if (CollectionUtils.isEmpty(wines)) {
@@ -54,21 +56,24 @@ public class WineController {
             logger.info("【搜索系统】查询到商品列表,:{}", new Gson().toJson(wines));
             return Result.buildSuccessResult(wines);
         } catch (IllegalArgumentException ie) {
-            logger.error("【搜索系统】非法参数异常",ie);
+            logger.error("【搜索系统】非法参数异常", ie);
             return Result.buildFailedResult(-1, "非法参数异常");
         } catch (Exception e) {
-            logger.error("【搜索系统】搜索时出现异常",e);
+            logger.error("【搜索系统】搜索时出现异常", e);
             return Result.buildFailedResult(-1, "服务器开小差了~~  请稍后重试");
         }
     }
 
     @RequestMapping(value = "wineInfo.htm", method = RequestMethod.POST)
     @ResponseBody
-    public Result wineInfo(@RequestBody Long wineId) {
+    public Result wineInfo(@RequestBody String wineId) {
         try {
-            Preconditions.checkArgument(wineId != null, "搜索内容不能为空");
-            logger.info("【酒品详情】请求获取酒品详情，请求参数:{}", new Gson().toJson(wineId));
-            Wine wine = wineService.selectWineByWineId(wineId);
+            logger.info("【酒品详情】请求获取酒品详情，前端传递参数:{}", new Gson().toJson(wineId));
+            String str = new StringBuffer(wineId).deleteCharAt(wineId.length() - 1).toString();
+            Preconditions.checkArgument(str != null, "用户ID不可为空");
+            long aLong = Long.parseLong(str);
+            logger.info("【酒品详情】请求获取酒品详情，请求参数:{}", new Gson().toJson(aLong));
+            Wine wine = wineService.selectWineByWineId(aLong);
             if (wine != null) {
                 logger.info("【酒品详情】获取酒品详情成功，:{}", new Gson().toJson(wine));
                 return Result.buildSuccessResult(wine);
@@ -76,10 +81,10 @@ public class WineController {
             logger.info("【酒品详情】获取酒品详情失败，获取结果为空");
             return Result.buildFailedResult(-1, "获取酒品详情出错,请重试");
         } catch (IllegalArgumentException ie) {
-            logger.error("【酒品详情】非法参数异常",ie);
+            logger.error("【酒品详情】非法参数异常", ie);
             return Result.buildFailedResult(-1, "非法参数异常");
         } catch (Exception e) {
-            logger.error("【酒品详情】获取酒品详情时出现异常",e);
+            logger.error("【酒品详情】获取酒品详情时出现异常", e);
             return Result.buildFailedResult(-1, "服务器开小差了~~  请稍后重试");
         }
 
@@ -131,10 +136,10 @@ public class WineController {
             logger.info("【添加商品】添加商品失败");
             return Result.buildFailedResult(-1, "添加商品出错,请重试");
         } catch (IllegalArgumentException ie) {
-            logger.error("【添加商品】非法参数异常",ie);
+            logger.error("【添加商品】非法参数异常", ie);
             return Result.buildFailedResult(-1, "非法参数异常");
         } catch (Exception e) {
-            logger.error("【添加商品】添加商品时出现异常",e);
+            logger.error("【添加商品】添加商品时出现异常", e);
             return Result.buildFailedResult(-1, "服务器开小差了~~  请稍后重试");
         }
 
@@ -163,10 +168,10 @@ public class WineController {
             logger.info("【删除商品】删除商品失败");
             return Result.buildFailedResult(-1, "删除商品出错,请重试");
         } catch (IllegalArgumentException ie) {
-            logger.error("【删除商品】非法参数异常",ie);
+            logger.error("【删除商品】非法参数异常", ie);
             return Result.buildFailedResult(-1, "非法参数异常");
         } catch (Exception e) {
-            logger.error("【删除商品】删除商品时出现异常",e);
+            logger.error("【删除商品】删除商品时出现异常", e);
             return Result.buildFailedResult(-1, "服务器开小差了~~  请稍后重试");
         }
 
@@ -197,10 +202,10 @@ public class WineController {
             logger.info("【更改商品】更改商品失败");
             return Result.buildFailedResult(-1, "更改商品出错,请重试");
         } catch (IllegalArgumentException ie) {
-            logger.error("【更改商品】非法参数异常",ie);
+            logger.error("【更改商品】非法参数异常", ie);
             return Result.buildFailedResult(-1, "非法参数异常");
         } catch (Exception e) {
-            logger.error("【更改商品】更改商品时出现异常",e);
+            logger.error("【更改商品】更改商品时出现异常", e);
             return Result.buildFailedResult(-1, "服务器开小差了~~  请稍后重试");
         }
 
@@ -224,10 +229,10 @@ public class WineController {
             logger.info("【添加库存】添加库存失败");
             return Result.buildFailedResult(-1, "添加库存出错,请重试");
         } catch (IllegalArgumentException ie) {
-            logger.error("【添加库存】非法参数异常",ie);
+            logger.error("【添加库存】非法参数异常", ie);
             return Result.buildFailedResult(-1, "非法参数异常");
         } catch (Exception e) {
-            logger.error("【添加库存】添加库存时出现异常",e);
+            logger.error("【添加库存】添加库存时出现异常", e);
             return Result.buildFailedResult(-1, "服务器开小差了~~  请稍后重试");
         }
 

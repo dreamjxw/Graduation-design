@@ -47,7 +47,8 @@ public class UserInfoController {
         try {
             logger.info("【微信授权】：用户请求微信授权登录");
             String callBackUrl = "http://dreamjxw.imwork.net:80/jxw/design/user/callback.htm";
-            String codeURL = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + AppInfo.APPID.getAppInfo() +
+            String codeURL = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="
+                    + AppInfo.APPID.getAppInfo() +
                     "&redirect_uri=" + URLEncoder.encode(callBackUrl) +
                     "&response_type=code" +
                     "&scope=snsapi_userinfo" +
@@ -106,14 +107,17 @@ public class UserInfoController {
             int i = userInfoService.insertUser(user);
             if (i > 0) {
                 logger.info("【微信授权】用户信息插入成功,用户信息:{}", new Gson().toJson(user));
+
                 req.setAttribute("user", user);
-                req.getRequestDispatcher("/WEB-INF/view/success.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/success.jsp").forward(req, resp);
                 // TODO 跳转至商城首页
             } else {
                 logger.warn("【微信授权】用户信息插入失败，用户信息：{}", new Gson().toJson(user));
+                // TODO 跳转错误页面
             }
         } catch (Exception e) {
             logger.error("【微信授权】用户信息插入时出现异常", e);
+            // TODO 跳转错误页面
         }
     }
 
