@@ -1,11 +1,14 @@
 package com.jxw.design.model.resp;
 
+import java.io.Serializable;
+
 /**
  * @Author Xingwu.Jia [xingwuj@tujia.com]
  * @Date 2018/2/6 14:37
  * @Description 轮播图resp
  */
-public class BannerPictureResp {
+public class BannerPictureResp implements Serializable {
+    private static final long serialVersionUID = -5487865375531651074L;
     /**
      * 红酒id
      */

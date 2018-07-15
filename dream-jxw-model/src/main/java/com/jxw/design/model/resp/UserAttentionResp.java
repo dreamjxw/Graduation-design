@@ -1,10 +1,13 @@
 package com.jxw.design.model.resp;
 
+import java.io.Serializable;
+
 /**
  * @author Xingwu.Jia [xingwuj@tujia.com]
  * @date 2018/1/24 20:20
  */
-public class UserAttentionResp {
+public class UserAttentionResp implements Serializable {
+    private static final long serialVersionUID = -1144137390721242278L;
     /**
      * 用户姓名
      */

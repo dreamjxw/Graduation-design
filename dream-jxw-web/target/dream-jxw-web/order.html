@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+ 	<meta http-equiv="content-type" content="text/html;charset=gb2312">
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="icon" href="#">
+	<script>
+        !function(e,t,i,r){function n(){var e=document.querySelector("head"),t=document.createElement("div");t.style.width="1rem",t.style.display="none",e.appendChild(t);var i=parseFloat(window.getComputedStyle(t,null).width);return e.removeChild(t),i}function a(){var r=d.getBoundingClientRect().width;r/c>768&&(r=768*c);var n=r/e*t;if(!i){var a=p/16;n/=a}d.style.fontSize=n+"px",v.rem=n}var m,o=window,l=o.document,d=l.documentElement,s=l.querySelector('meta[name="viewport"]'),c=0,u=0,p=n(),v={};if(s){var h=s.getAttribute("content").match(/initial\-scale=([\d\.]+)/);h&&(console.warn("将根据已有的meta标签来设置缩放比例"),u=parseFloat(h[1]),c=parseInt(1/u))}if(!c&&!u){var f=o.devicePixelRatio;r?(c=f>=3&&(!c||c>=3)?3:f>=2&&(!c||c>=2)?2:1,u=1/c):(c=1,u=1/c)}if(d.setAttribute("data-dpr",c),!s)if(s=l.createElement("meta"),s.setAttribute("name","viewport"),s.setAttribute("content","width=device-width, initial-scale="+u+", maximum-scale="+u+", minimum-scale="+u+", user-scalable=no"),d.firstElementChild)d.firstElementChild.appendChild(s);else{var w=l.createElement("div");w.appendChild(s),l.write(w.innerHTML)}o.addEventListener("resize",function(){clearTimeout(m),m=setTimeout(a,300)},!1),o.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(m),m=setTimeout(a,300))},!1),a(),v.dpr=c,v.refreshRem=a,v.rem2px=function(e){var t=parseFloat(e)*this.rem;return"string"==typeof e&&e.match(/rem$/)&&(t+="px"),t},v.px2rem=function(e){var t=parseFloat(e)/this.rem;return"string"==typeof e&&e.match(/px$/)&&(t+="rem"),t},window.remmoka=v}
+        (750,100,!0,!0);
+        /*
+         * designWidth, oneRem2Px, resetScaleFontSizeToDefault, useScaleFix1pxTooBold
+         * @param designWidth 设计稿宽度 一般来说iPhone6是750 如果缩小就变成了375px
+         * @param oneRem2Px 1rem对应多少px
+         * @param resetScaleFontSizeToDefault 是否重置Android因为系统放大或者缩小字体带来的影响
+         * @param useScaleFix1pxTooBold 是否通过meta标签的scale处理1px过于粗的问题
+         * */
+    </script>    	
+	<title>订单详情</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<div id="page">
+	<header  class="order-header">
+		<div class="personal-information">
+			<div class="name">收货人：{{addressInfo.postName}}</div>
+			<div class="number">{{addressInfo.postPhone}}</div>
+		</div>
+		<div class="shipping-address">
+			<div class="position">
+				<img src="./img/order/position.png" style="width:0.5rem;height:0.6rem">
+			</div>	 
+			<div class="address">收货地址：{{addressInfo.postAddress}}
+			</div>
+			<div class="arrow">
+				<a :href="'./address.html?userId='+this.userId"><img src="img/order/arrow.png" style="width:0.2rem;height:0.3rem"></a>
+			</div>
+		</div>
+		<div class="remarks">
+			（收货不便时，可选择免费代收货服务）
+		</div>
+	</header>
+	<section class="order-goods">
+		<ul>
+			<li v-for="(item,index) in goodsInfo">
+				<div class="winePicture">
+					<img :src="item.winePicture" style="width:1.6rem;height:1.6rem">
+				</div>
+				<div class="commodity-information">
+					<p class="brief-introduction">
+						{{item.wineName}}
+					</p>
+					<p class="wineGrade">评分 {{item.wineScore}}分</p>
+					<div class="order-info">
+						<div class="winePrice">￥ {{item.winePrice}}</div>&nbsp;&nbsp;&nbsp;&nbsp;
+						<div class="order-number">X {{item.wineNum}}</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</section>
+	<div class="order-section">
+		<div class="distribution">
+			<div class="way">
+				配送方式
+			</div>
+			<div class="fast-mail">
+				快递 免邮
+				<img src="img/order/arrow.png" style="width:0.2rem;height:0.3rem">
+			</div>
+		</div>
+		<div class="fright">
+			<div class="insurance">运费险</div>
+			<img src="img/order/arrow.png" style="width:0.2rem;height:0.3rem">
+		</div>
+		<div class="reference">
+			<div class="know">运费险投保须知</div>
+			<div class="leave-word">
+				<div class="bull-position">买家留言 ：</div>
+				<div class="site">选填：对本次交易的说明（建议填写已和商家...</div>
+			</div>
+		</div>
+		<div class="subtotal">
+			<div class="number">共<span>{{goodsInfo[0].totalNum}}</span>件商品</div>
+			<div class="price">小计：<span class="winePrice">￥ {{goodsInfo[0].totalPrice}}</span></div>
+		</div>
+	</div>
+	<div class="order-footer">
+		<div class="total">合计：<span>￥{{goodsInfo[0].totalPrice}}</span></div>
+		<div class="submit" @click="submit()">支付订单</div>
+	</div>
+	<div class="tipOrder"  v-show="isShow">
+		<div class="close" @click="isShow=!isShow">X</div>
+		<input value="确认支付" @click="confirm()" type="button">
+	</div>
+</div>
+	<script src="./js/lib/vue.min.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script>
+		var instance = axios.create({
+			header:{
+				contentType: 'application/x-www-form-urlencoded'
+			}
+		})
+		new Vue({
+			el:"#page",
+			data:{
+				addressInfo:[],
+				goodsInfo:[],
+				userId:'',
+				orderNum:'',
+				isShow:false
+			},
+			methods:{
+				submit:function(){
+					var that = this;
+					this.isShow = true;
+					var totalData = [];
+//                    totalData.push(parameter);
+					for(var i = 0 ; i<that.goodsInfo.length;i++){
+						var data = {};
+						for(var attr in that.goodsInfo[i]){
+							var wineId = that.goodsInfo[i].wineId;
+							var wineNum = that.goodsInfo[i].wineNum;
+							var wineName = that.goodsInfo[i].wineName;
+							data={
+								wineId : wineId,
+								wineName:wineName,
+								wineNum :wineNum
+							}
+						}
+						totalData.push(data);
+					}
+					console.log(totalData);
+					console.log(typeof totalData);
+					instance({
+						method:"POST",
+						url:"http://dreamjxw.imwork.net:80/jxw/design/order/addOrder.htm",
+						data:{
+							"userId":that.userId,
+							"orderGoods":totalData
+						},
+						contentType: 'Access-Control-Allow-Origin',
+					}).then(function(res){
+						console.log(res.data);
+						that.orderInfo = res.data.data;
+						console.log(that.orderInfo.orderId);
+					}, function(error){
+						console.log(error)
+					})
+				},
+				confirm:function(){
+					var that = this;
+					instance({
+						method:"POST",
+						url:"http://dreamjxw.imwork.net:80/jxw/design/order/paymentOrder.htm",
+						data:{
+							"orderId":that.orderInfo.orderId,
+							"userId":that.userId
+						},
+						contentType: 'Access-Control-Allow-Origin',
+					}).then(function(res){
+						console.log(res.data);
+//						if (res.data.data=null){
+//                            alert("支付失败！");
+//						}else{
+                            alert(res.data.data);
+//                        }
+//						    alert("支付成功！");
+                        window.location.href='./index.html?userId='+that.userId;
+//						}
+//						else{
+//						    alert("支付失败！");
+//						}
+//						if(res.data.ret=true){
+                    }, function(error){
+						console.log(error)
+					})
+				}
+			},
+			mounted(){
+				function queryString(key){
+					var src = location.search || location.hash,
+							reg = new RegExp('[?&]' + key + '=([^?&=]*)(?=&|$)'),
+							match = reg.exec(src);
+					return match == null ? null : decodeURIComponent(match[1]);
+				}
+				var  userId= queryString('userId');
+				console.log( queryString('userId'));
+				this.userId=userId;
+				var userInfo=[];
+				var data={
+					"userId":userId
+				};
+				console.log(userInfo);
+				userInfo.push(data);
+				var that = this;
+				instance({
+					method:"POST",
+					url:"http://dreamjxw.imwork.net:80/jxw/design/shopcart/keepDate.htm?action=1",
+					data:userInfo,
+					contentType: 'Access-Control-Allow-Origin',
+				}).then(function(res){
+							console.log(res.data);
+							that.goodsInfo = res.data.data;
+							console.log(that.goodsInfo);
+						}, function(error){
+							console.log(error)
+						});
+				instance({
+					method:"POST",
+					url:"http://dreamjxw.imwork.net:80/jxw/design/post/select.htm",
+					data:'oXJnE1Rr36wJ2m_czWkvM8JP3eZU',
+					contentType: 'Access-Control-Allow-Origin',
+				}).then(function(res){
+							console.log(res.data);
+							that.addressInfo = res.data.data[0];
+							console.log(that.addressInfo);
+						},
+						function(error){
+
+							console.log(error)
+						})
+			}
+		})
+	</script>
+
+</body>
+</html>

@@ -33,6 +33,11 @@ public class WineServiceImpl implements WineService {
     }
 
     @Override
+    public List<Wine> selectWineByWineIdBatch(Integer[] data) {
+        return wineSlaveDao.selectWineByWineIdBatch(data);
+    }
+
+    @Override
     public List<Wine> searchWine(String content) {
         logger.info("【搜索系统】请求查询酒品信息,请求参数:{}", new Gson().toJson(content));
         return wineSlaveDao.searchWine(content);

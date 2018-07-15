@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -33,9 +34,6 @@ import java.util.HashMap;
 @RequestMapping("/jxw/design/user")
 public class UserInfoController {
     private final Logger logger = LoggerFactory.getLogger(UserInfoController.class);
-    /**
-     * TODO 后期改为使用Redis
-     */
     HashMap<String, WeChatLogin> map = new HashMap<String, WeChatLogin>();
     @Autowired
     private UserInfoService userInfoService;
@@ -107,10 +105,15 @@ public class UserInfoController {
             int i = userInfoService.insertUser(user);
             if (i > 0) {
                 logger.info("【微信授权】用户信息插入成功,用户信息:{}", new Gson().toJson(user));
-
-                req.setAttribute("user", user);
-                req.getRequestDispatcher("/WEB-INF/success.jsp").forward(req, resp);
-                // TODO 跳转至商城首页
+                Cookie userCookie = new Cookie("userInfo", user.getUserId());
+                /**
+                 * 存活期为一个小时
+                 */
+                userCookie.setMaxAge(60 * 60);
+                userCookie.setPath("/");
+                resp.addCookie(userCookie);
+                resp.sendRedirect("http://dreamjxw.imwork.net?userId=" + user.getUserId());
+//                resp.sendRedirect("http://dreamjxw.imwork.net/");
             } else {
                 logger.warn("【微信授权】用户信息插入失败，用户信息：{}", new Gson().toJson(user));
                 // TODO 跳转错误页面
@@ -125,12 +128,13 @@ public class UserInfoController {
     @ResponseBody
     public Result userInfo(@RequestBody String userId) {
         try {
+            String str = new StringBuffer(userId).deleteCharAt(userId.length() - 1).toString();
             Preconditions.checkArgument(userId != null, "用户Id不能为空");
-            logger.info("【用户模块】请求获取用户信息,:{}", new Gson().toJson(userId));
-            Long countFans = userAttentionService.countFans(userId);
-            Long countAttention = userAttentionService.countAttention(userId);
-            userInfoService.updateAttFansNumber(userId, countAttention, countFans);
-            User user = userInfoService.obtainUserInfo(userId);
+            logger.info("【用户模块】请求获取用户信息,:{}", new Gson().toJson(str));
+            Long countFans = userAttentionService.countFans(str);
+            Long countAttention = userAttentionService.countAttention(str);
+            userInfoService.updateAttFansNumber(str, countAttention, countFans);
+            User user = userInfoService.obtainUserInfo(str);
             if (user != null) {
                 logger.info("【用户模块】查询到用户信息,:{}", new Gson().toJson(user));
                 return Result.buildSuccessResult(user);

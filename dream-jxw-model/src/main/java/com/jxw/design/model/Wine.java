@@ -6,12 +6,12 @@ import java.io.Serializable;
  * @author Xingwu.Jia [xingwuj@tujia.com]
  * @date 2018/1/21  19:02
  */
-public class Wine implements Serializable {
+public class Wine extends WineStock implements Serializable {
     private static final long serialVersionUID = 3917778030365191179L;
     /**
      * 红酒id
      */
-    private Long wineId;
+    private transient Long wineId;
     /**
      * 红酒名
      */
@@ -45,10 +45,12 @@ public class Wine implements Serializable {
      */
     private String wineBrand;
 
+    @Override
     public Long getWineId() {
         return wineId;
     }
 
+    @Override
     public void setWineId(Long wineId) {
         this.wineId = wineId;
     }

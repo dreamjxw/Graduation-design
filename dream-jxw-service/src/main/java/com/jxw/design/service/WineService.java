@@ -16,6 +16,13 @@ public interface WineService {
      * @return
      */
     Wine selectWineByWineId(Long wineId);
+    /**
+     * 批量查询
+     *
+     * @param data
+     * @return
+     */
+    List<Wine> selectWineByWineIdBatch(Integer[] data);
 
     /**
      * 搜索

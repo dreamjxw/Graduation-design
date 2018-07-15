@@ -111,7 +111,7 @@ public class PostController {
                 logger.warn("【收货信息】查询到收货信息为空");
                 return Result.buildFailedResult(-1, "您没有收货信息，请先添加...");
             }
-            logger.info("【收货信息】查询收货信息成功");
+            logger.info("【收货信息】查询收货信息成功,:{}",new Gson().toJson(postList));
             return Result.buildSuccessResult(postList);
         } catch (IllegalArgumentException ie) {
             logger.error("【收货信息】非法参数异常", ie);

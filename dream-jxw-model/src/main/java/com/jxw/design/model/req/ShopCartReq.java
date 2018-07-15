@@ -1,11 +1,14 @@
 package com.jxw.design.model.req;
 
+import java.io.Serializable;
+
 /**
  * @Author Xingwu.Jia [xingwuj@tujia.com]
  * @Date 2018/2/26 19:29
  * @Description
  */
-public class ShopCartReq {
+public class ShopCartReq implements Serializable {
+    private static final long serialVersionUID = 8178450860140003545L;
     /**
      * 用户id
      */

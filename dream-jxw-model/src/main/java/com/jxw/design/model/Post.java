@@ -1,11 +1,14 @@
 package com.jxw.design.model;
 
+import java.io.Serializable;
+
 /**
  * @Author Xingwu.Jia [xingwuj@tujia.com]
  * @Date 2018/2/27 17:32
  * @Description 收货信息
  */
-public class Post {
+public class Post implements Serializable {
+    private static final long serialVersionUID = 4608075345472843855L;
     /**
      * 主键
      */

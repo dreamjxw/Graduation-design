@@ -1,12 +1,15 @@
 package com.jxw.design.model.req;
 
+import java.io.Serializable;
+
 /**
  * @author Xingwu.Jia [xingwuj@tujia.com]
  * @date 2018/1/29 11:35
  * <p>
  * 用户排行榜请求实体
  */
-public class UserRankReq {
+public class UserRankReq implements Serializable {
+    private static final long serialVersionUID = -38386307092708197L;
     /**
      * 用户id（微信端openid）
      */

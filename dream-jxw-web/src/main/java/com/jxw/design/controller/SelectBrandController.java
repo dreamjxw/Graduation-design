@@ -43,7 +43,7 @@ public class SelectBrandController {
                 logger.info("【严选品牌】查询红葡萄酒列表为空");
                 return Result.buildFailedResult(-1, "查询红葡萄酒列表为空");
             }
-            logger.info("【严选品牌】查询红葡萄酒列表", new Gson().toJson(showWineResps));
+            logger.info("【严选品牌】查询红葡萄酒列表，:{}", new Gson().toJson(showWineResps));
             return Result.buildSuccessResult(showWineResps);
         } catch (IllegalArgumentException ie) {
             logger.error("【严选品牌】非法参数异常", ie);
@@ -64,7 +64,7 @@ public class SelectBrandController {
                 logger.info("【严选品牌】查询白葡萄酒列表为空");
                 return Result.buildFailedResult(-1, "查询白葡萄酒列表为空");
             }
-            logger.info("【严选品牌】查询白葡萄酒列表", new Gson().toJson(showWineResps));
+            logger.info("【严选品牌】查询白葡萄酒列表，:{}", new Gson().toJson(showWineResps));
             return Result.buildSuccessResult(showWineResps);
         } catch (IllegalArgumentException ie) {
             logger.error("【严选品牌】非法参数异常", ie);

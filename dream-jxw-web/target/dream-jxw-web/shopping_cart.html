@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />-->
+    <meta http-equiv="content-type" content="text/html;charset=gb2312">
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="icon" href="#">
+    <script>
+        !function(e,t,i,r){function n(){var e=document.querySelector("head"),t=document.createElement("div");t.style.width="1rem",t.style.display="none",e.appendChild(t);var i=parseFloat(window.getComputedStyle(t,null).width);return e.removeChild(t),i}function a(){var r=d.getBoundingClientRect().width;r/c>768&&(r=768*c);var n=r/e*t;if(!i){var a=p/16;n/=a}d.style.fontSize=n+"px",v.rem=n}var m,o=window,l=o.document,d=l.documentElement,s=l.querySelector('meta[name="viewport"]'),c=0,u=0,p=n(),v={};if(s){var h=s.getAttribute("content").match(/initial\-scale=([\d\.]+)/);h&&(console.warn("将根据已有的meta标签来设置缩放比例"),u=parseFloat(h[1]),c=parseInt(1/u))}if(!c&&!u){var f=o.devicePixelRatio;r?(c=f>=3&&(!c||c>=3)?3:f>=2&&(!c||c>=2)?2:1,u=1/c):(c=1,u=1/c)}if(d.setAttribute("data-dpr",c),!s)if(s=l.createElement("meta"),s.setAttribute("name","viewport"),s.setAttribute("content","width=device-width, initial-scale="+u+", maximum-scale="+u+", minimum-scale="+u+", user-scalable=no"),d.firstElementChild)d.firstElementChild.appendChild(s);else{var w=l.createElement("div");w.appendChild(s),l.write(w.innerHTML)}o.addEventListener("resize",function(){clearTimeout(m),m=setTimeout(a,300)},!1),o.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(m),m=setTimeout(a,300))},!1),a(),v.dpr=c,v.refreshRem=a,v.rem2px=function(e){var t=parseFloat(e)*this.rem;return"string"==typeof e&&e.match(/rem$/)&&(t+="px"),t},v.px2rem=function(e){var t=parseFloat(e)/this.rem;return"string"==typeof e&&e.match(/px$/)&&(t+="rem"),t},window.remmoka=v}
+        (750,100,!0,!0);
+        /*
+         * designWidth, oneRem2Px, resetScaleFontSizeToDefault, useScaleFix1pxTooBold
+         * @param designWidth 设计稿宽度 一般来说iPhone6是750 如果缩小就变成了375px
+         * @param oneRem2Px 1rem对应多少px
+         * @param resetScaleFontSizeToDefault 是否重置Android因为系统放大或者缩小字体带来的影响
+         * @param useScaleFix1pxTooBold 是否通过meta标签的scale处理1px过于粗的问题
+         * */
+    </script>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <title>购物车</title>
+</head>
+<body>
+    <div id="page">
+            <header class="cart-header"></header>
+            <div class="cart-section">
+                <ul class="goods">
+                    <li v-for="(item,index) in goodsList"> 
+                         <!-- 商品图片 -->
+                        <div class="section-left">
+                            <div class="check" @click="item.select = !item.select" :class="{'check-true':item.select}"></div>
+                            <img :src="item.wineImg" class="winePicture" style="width:1.5rem;height:1.5rem">
+                        </div>
+                        <div class="center">
+                            <p class="wineName">{{item.wineName}}</p>
+                            <p><span class="wineGrade"> 评分{{item.wineGrade}} </span><span class="winePrice">| 售价 {{item.winePrice}} 元</span></p>
+                        </div>
+                        <div class="section-right">
+                            <div class="del" @click="deletPro(index)">
+                                 删除
+                            </div>
+                            <div class="totalPrice">{{item.wineNum*item.winePrice}}.00</div>
+                            <div class="count">
+                                <div class="minus" @click="{{item.wineNum > 1 ? item.wineNum-- : 1}}">-</div>
+                                <div class="number">{{item.wineNum}}</div>
+                                <div class="add" @click="{{item.wineNum++}}">+</div>
+                            </div> 
+                        
+                        </div>
+                        
+                    </li>            
+                </ul>
+            </div>
+            <div class="cart-accounts">
+                <div class="check">
+                    <span class="check-all" @click="selectPro(isSelectAll)" :class="{'check-true':isSelectAll}"></span>
+                    <span class="word"> 全选 </span>
+                </div>
+                <div class="price">
+                    <p>合计： <span class="commodity-price"> {{getTotal.totalPrice}} </span> 元 </p>
+                    <p>共 :<span class="goods-number"> {{getTotal.totalNum}}</span> 件商品 </p>
+                </div>
+                <div   @click="addOrder()" class="settlePrice">
+                    去结算
+                </div>
+
+            </div>
+        <a :href="'./order.html?userId='+this.userId+'&totalPrice='+getTotal.totalPrice" class="confirm-order" v-show="isShow">
+            确定
+        </a>
+        <!--底部导航-->
+        <footer>
+            <ul class="footer-list">
+                <li>
+                    <a :href="'./index.html?userId='+this.userId"><img src="img/footer/home-y.png" style="width:0.58rem;height:0.52rem"></a>
+                    <span>首页</span>
+                </li>
+                <li>
+                    <a :href="'./shopping_cart.html?userId='+this.userId"><img src="img/footer/shoppingcart.png" style="width:0.58rem;height:0.52rem"></a>
+                    <span>购物车</span>
+                </li>
+                <li>
+                    <a :href="'./personCenter.html?userId='+this.userId"><img src="img/footer/my.png" style="width:0.58rem;height:0.52rem"></a>
+                    <span>我的</span>
+                </li>
+            </ul>
+        </footer>
+
+    </div>
+    
+    <!-- <script type="text/javascript" src="js/lib/jquery.min.js"></script> -->
+    <script type="text/javascript" src="js/shopping_cart.js"></script>
+    <script src="./js//lib/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        var instance = axios.create({
+            header:{contentType: 'application/x-www-form-urlencoded'}
+        })
+        new Vue({
+            el:"#page",
+            data:{
+                // isSelectAll:true,
+                goodsList:[
+                    
+                ],
+                userId:'',
+                isShow:false,
+            },
+        
+            computed: {
+                isSelectAll:function(){
+                    return this.goodsList.every(function(val){return val.select});
+                    console.log(true);
+                },
+                getTotal:function(){
+                    var goodList = this.goodsList.filter(function(val){return val.select});
+                    var totalPrice = 0 ,totalNum=0;
+                    for(var i = 0 ; i<goodList.length ;i++){
+                        totalPrice += goodList[i].wineNum * goodList[i].winePrice;
+                        totalNum += Number(goodList[i].wineNum);
+                    }
+                    return {totalNum : totalNum ,totalPrice:totalPrice}
+                }
+            },
+            methods: {
+                selectPro:function(isSelect){
+                    var that = this;
+                    for(var i = 0 ,len = this.goodsList.length; i<len ; i++){
+                        that.goodsList[i].select = !isSelect;
+                    }
+                },
+                deletPro:function(index){
+                    this.goodsList.splice(index,1);
+                    var that = this;
+                    instance({
+                        method:"POST",
+                        url:"http://dreamjxw.imwork.net:80/jxw/design/shopcart/delete.htm",
+                        data:{
+                            userId:that.goodsList[index].userId,
+                            wineId:that.goodsList[index].wineId
+                        },
+                        contentType: 'Access-Control-Allow-Origin',
+                    }).then(function(res){
+                        console.log(res);
+                    },function(error){
+                        console.log(error);
+                    }) 
+                },
+                addOrder:function(){
+                    console.log(this.getTotal.totalPrice)
+                    var that = this;
+//                    var parameter={action:0};
+                    var totalData = [];
+//                    totalData.push(parameter);
+                    for(var i = 0 ; i<this.goodsList.length;i++){
+                        var data = {};
+                        for(var attr in that.goodsList[i]){
+                            var wineId = that.goodsList[i].wineId;
+                            var wineNum = that.goodsList[i].wineNum;
+                            data={
+                                userId:that.userId,
+                                wineId : wineId,
+                                wineNum :wineNum
+                            }
+                        }
+                        totalData.push(data);
+                    }
+                    console.log(totalData);
+                    console.log(typeof totalData);
+                    console.log(this.goodsList.length);
+                    console.log(this.goodsList[0].userId);
+                    instance({
+                        method:"POST",
+                        url:"http://dreamjxw.imwork.net:80/jxw/design/shopcart/keepDate.htm?action=0",
+                        data:totalData,
+                        contentType: 'Access-Control-Allow-Origin',
+                    }).then(function(res){
+                        console.log(res.data);
+                    },function(error){
+                        console.log(error);
+                    });
+                    this.isShow= !this.isShow;
+                }
+            },
+            mounted () {
+                function queryString(key){
+                    var src = location.search || location.hash,
+                            reg = new RegExp('[?&]' + key + '=([^?&=]*)(?=&|$)'),
+                            match = reg.exec(src);
+                    return match == null ? null : decodeURIComponent(match[1]);
+                }
+                var  userId= queryString('userId');
+                this.userId=userId;
+                console.log(this.userId);
+                var that = this;
+
+                instance({
+                    method:"POST",
+                    url:"http://dreamjxw.imwork.net:80/jxw/design/shopcart/select.htm",
+//                    data:'oXJnE1Rr36wJ2m_czWkvM8JP3eZU',
+//                   data:"oXJnE1Rr36wJ2m_czWkvM8JP3eZU",
+                    data:userId,
+                    contentType: 'Access-Control-Allow-Origin',
+                }).then(function(res){
+                    console.log(res.data);
+                    that.goodsList = res.data.data;
+                    that.goodsList.map(function(item){
+                    that.$set(item,'select',true);
+                     })
+//                    console.log( that.goodsList);
+                },function(error){
+                    console.log(error);
+                })
+
+            }
+        })
+    </script>
+</body>
+</html>

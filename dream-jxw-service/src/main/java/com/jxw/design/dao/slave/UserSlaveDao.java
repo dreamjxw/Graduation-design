@@ -54,4 +54,11 @@ public interface UserSlaveDao {
      */
     User obtainUserInfo(String userId);
 
+    /**
+     * 根据Id查询
+     * @param id
+     * @return
+     */
+    User selectUserById(@Param("id") int id);
+
 }

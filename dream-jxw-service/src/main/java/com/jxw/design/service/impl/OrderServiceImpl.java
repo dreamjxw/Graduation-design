@@ -65,14 +65,14 @@ public class OrderServiceImpl implements OrderService {
             return -2;
         }
         if (order != null && user != null) {
-            if (order.getOrderDateStart().after(DateTime.now().minusMinutes(overTime).toDate())) {
+            if (!order.getOrderDateStart().after(DateTime.now().minusMinutes(overTime).toDate())) {
                 logger.info("【订单系统】订单支付超时");
                 order.setOrderDateEnd(DateTime.now().toDate());
                 order.setPayStatusId(2);
                 return orderDao.updateOrderStatus(order);
             } else {
-                logger.info("【订单系统】订单正常支付");
                 if (order.getWineTotalPrice() <= user.getUserAccount()) {
+                    logger.info("【订单系统】订单正常支付");
                     order.setOrderDateEnd(DateTime.now().toDate());
                     order.setPayStatusId(1);
                     logger.info("【订单系统】账户余额" + user.getUserAccount() + "元，本次扣除" + order.getWineTotalPrice() + "元");

@@ -5,6 +5,8 @@ import com.google.gson.Gson;
 import com.jxw.design.enums.UserPowerType;
 import com.jxw.design.model.User;
 import com.jxw.design.model.Wine;
+import com.jxw.design.model.WineStock;
+import com.jxw.design.model.req.StringReq;
 import com.jxw.design.model.req.WineStockReq;
 import com.jxw.design.service.UserInfoService;
 import com.jxw.design.service.WineService;
@@ -40,15 +42,35 @@ public class WineController {
     @Autowired
     private WineStockService wineStockService;
 
-    @RequestMapping(value = "searchWine.htm", method = RequestMethod.POST)
+    @RequestMapping(value = "selectWineByWineIdBatch.htm", method = RequestMethod.POST)
     @ResponseBody
-    public Result searchWine(@RequestBody String contents) {
+    public Result selectWineByWineIdBatch(@RequestBody Integer[] data) {
         try {
-            logger.info("【搜索系统】请求搜索酒品，前端传递的参数:{}", new Gson().toJson(contents));
-            Preconditions.checkArgument(contents != null, "搜索内容不能为空");
-            String content = new StringBuffer(contents).deleteCharAt(contents.length() - 1).toString();
-            logger.info("【搜索系统】请求搜索酒品，请求参数:{}", new Gson().toJson(content));
-            List<Wine> wines = wineService.searchWine(content);
+            Preconditions.checkArgument(data != null, "传入数据不能为空");
+            logger.info("【搜索系统】请求批量查询酒品，请求参数:{}", new Gson().toJson(data));
+            List<Wine> wines = wineService.selectWineByWineIdBatch(data);
+            if (CollectionUtils.isEmpty(wines)) {
+                logger.info("【搜索系统】批量查询商品列表为空");
+                return Result.buildFailedResult(-1, "批量查询不到满足该条件的商品");
+            }
+            logger.info("【搜索系统】批量查询到商品列表,:{}", new Gson().toJson(wines));
+            return Result.buildSuccessResult(wines);
+        } catch (IllegalArgumentException ie) {
+            logger.error("【搜索系统】非法参数异常", ie);
+            return Result.buildFailedResult(-1, "非法参数异常");
+        } catch (Exception e) {
+            logger.error("【搜索系统】批量查询时出现异常", e);
+            return Result.buildFailedResult(-1, "服务器开小差了~~  请稍后重试");
+        }
+    }
+
+    @RequestMapping(value = "shousuo.htm", method = RequestMethod.POST)
+    @ResponseBody
+    public Result searchWine(@RequestBody StringReq stringReq) {
+        try {
+            Preconditions.checkArgument(stringReq.getMessage() != null, "搜索内容不能为空");
+            logger.info("【搜索系统】请求搜索酒品，请求参数:{}", new Gson().toJson(stringReq));
+            List<Wine> wines = wineService.searchWine(stringReq.getMessage());
             if (CollectionUtils.isEmpty(wines)) {
                 logger.info("【搜索系统】查询商品列表为空");
                 return Result.buildFailedResult(-1, "查询不到满足该条件的商品");
@@ -74,6 +96,11 @@ public class WineController {
             long aLong = Long.parseLong(str);
             logger.info("【酒品详情】请求获取酒品详情，请求参数:{}", new Gson().toJson(aLong));
             Wine wine = wineService.selectWineByWineId(aLong);
+            WineStock wineStock = wineStockService.selectStock(aLong);
+            wine.setWineReal(wineStock.getWineReal());
+            wine.setWineStock(wineStock.getWineStock());
+            wine.setWineAlwaysReal(wine.getWineAlwaysReal());
+            wine.setWineAlwaysStock(wine.getWineAlwaysStock());
             if (wine != null) {
                 logger.info("【酒品详情】获取酒品详情成功，:{}", new Gson().toJson(wine));
                 return Result.buildSuccessResult(wine);
@@ -179,21 +206,23 @@ public class WineController {
 
     @RequestMapping(value = "updateWine.htm", method = RequestMethod.POST)
     @ResponseBody
-    public Result updateWine(@RequestBody Wine wine, HttpServletRequest req) {
+    public Result updateWine(@RequestBody StringReq stringReq) {
         try {
-            Preconditions.checkArgument(wine != null, "更新信息不能为空");
-            Preconditions.checkArgument(StringUtils.isNotBlank(String.valueOf(wine.getWinePrice())), "更新酒品价格不能为空");
-            Preconditions.checkArgument(NumberUtils.isNumber(String.valueOf(wine.getWinePrice())), "更新酒品价格只能是数字");
-            Preconditions.checkArgument(StringUtils.isNotBlank(String.valueOf(wine.getWineId())), "要更新的酒品ID不能为空");
-            String userId = req.getParameter("userId");
-            Preconditions.checkArgument(userId != null, "用户Id不能为空");
-            logger.info("【更改商品】请求更改商品，请求参数:{}", new Gson().toJson(wine), new Gson().toJson(userId));
-            User user = userInfoService.obtainUserInfo(userId);
+            Preconditions.checkArgument(stringReq != null, "更新信息不能为空");
+            Preconditions.checkArgument(StringUtils.isNotBlank(String.valueOf(stringReq.getWinePrice())), "更新酒品价格不能为空");
+            Preconditions.checkArgument(NumberUtils.isNumber(String.valueOf(stringReq.getWinePrice())), "更新酒品价格只能是数字");
+            Preconditions.checkArgument(StringUtils.isNotBlank(String.valueOf(stringReq.getWineId())), "要更新的酒品ID不能为空");
+            Preconditions.checkArgument(stringReq.getMessage() != null, "用户Id不能为空");
+            logger.info("【更改商品】请求更改商品，请求参数:{}", new Gson().toJson(stringReq), new Gson().toJson(stringReq));
+            User user = userInfoService.obtainUserInfo(stringReq.getMessage());
             logger.info("【更改商品】请求用户信息:{}", new Gson().toJson(user));
             if (user.getUserPower().equals(UserPowerType.CONSUMER.getUserPower())) {
                 logger.warn("【更改商品】该用户为消费者，无权限更改商品");
                 return Result.buildFailedResult(-1, "您无权限执行此操作");
             }
+            Wine wine = new Wine();
+            wine.setWineId(stringReq.getWineId());
+            wine.setWinePrice(stringReq.getWinePrice());
             int i = wineService.updateWine(wine);
             if (i > 0) {
                 logger.info("【更改商品】更改商品成功");
@@ -235,6 +264,5 @@ public class WineController {
             logger.error("【添加库存】添加库存时出现异常", e);
             return Result.buildFailedResult(-1, "服务器开小差了~~  请稍后重试");
         }
-
     }
 }

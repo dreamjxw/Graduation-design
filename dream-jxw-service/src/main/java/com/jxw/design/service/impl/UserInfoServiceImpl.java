@@ -54,4 +54,9 @@ public class UserInfoServiceImpl implements UserInfoService {
     public int updateUserAccount(String userId, Double userAccount) {
         return userDao.updateUserAccount(userId, userAccount);
     }
+
+    @Override
+    public User selectUserById(int id) {
+        return userSlaveDao.selectUserById(id);
+    }
 }

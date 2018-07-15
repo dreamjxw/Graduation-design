@@ -71,4 +71,9 @@ public class WineStockServiceImpl implements WineStockService {
     public int deleteStock(Long wineId) {
         return wineStockDao.deleteStock(wineId);
     }
+
+    @Override
+    public WineStock selectStock(Long wineId) {
+        return wineStockSlaveDao.selectByWineId(wineId);
+    }
 }

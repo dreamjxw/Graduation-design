@@ -15,6 +15,18 @@
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-tools</artifactId>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
@@ -187,20 +199,20 @@
             </resource>
         </resources>
         <!--<plugins>-->
-            <!--<plugin>-->
-                <!--&lt;!&ndash; 源码插件 &ndash;&gt;-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-source-plugin</artifactId>-->
-                <!--&lt;!&ndash; 发布时自动将源码同时发布的配置 &ndash;&gt;-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>attach-sources</id>-->
-                        <!--<goals>-->
-                            <!--<goal>jar</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
+        <!--<plugin>-->
+        <!--&lt;!&ndash; 源码插件 &ndash;&gt;-->
+        <!--<groupId>org.apache.maven.plugins</groupId>-->
+        <!--<artifactId>maven-source-plugin</artifactId>-->
+        <!--&lt;!&ndash; 发布时自动将源码同时发布的配置 &ndash;&gt;-->
+        <!--<executions>-->
+        <!--<execution>-->
+        <!--<id>attach-sources</id>-->
+        <!--<goals>-->
+        <!--<goal>jar</goal>-->
+        <!--</goals>-->
+        <!--</execution>-->
+        <!--</executions>-->
+        <!--</plugin>-->
         <!--</plugins>-->
     </build>
 </project>

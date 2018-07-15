@@ -41,4 +41,10 @@ public interface UserInfoService {
      * @return
      */
     int updateUserAccount(String userId, Double userAccount);
+    /**
+     * 根据Id查询
+     * @param id
+     * @return
+     */
+    User selectUserById(int id);
 }

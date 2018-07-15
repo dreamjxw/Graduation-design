@@ -7,6 +7,7 @@ import com.jxw.design.model.Order;
 import com.jxw.design.model.OrderGoods;
 import com.jxw.design.model.Wine;
 import com.jxw.design.model.req.OrderReq;
+import com.jxw.design.model.req.PaymentReq;
 import com.jxw.design.service.OrderService;
 import com.jxw.design.service.WineService;
 import com.jxw.design.service.WineStockService;
@@ -39,12 +40,12 @@ public class OrderController {
     private WineStockService wineStockService;
 
 
-    @RequestMapping(value ="addOrder.htm", method = RequestMethod.POST)
+    @RequestMapping(value = "addOrder.htm", method = RequestMethod.POST)
     @ResponseBody
     public Result addOrder(@RequestBody OrderReq orderReq) {
         try {
             Preconditions.checkArgument(orderReq.getUserId() != null, "用户ID不可为空");
-            Preconditions.checkArgument(orderReq.getOrderGoods() != null, "订单信息不可为空");
+            Preconditions.checkArgument(orderReq.getOrderGoods() != null || orderReq.getOrderGoods().size() != 0, "订单信息不可为空");
             logger.info("【订单系统】请求下订单，请求参数:{}", new Gson().toJson(orderReq));
             List<OrderGoods> orderGoods = orderReq.getOrderGoods();
             for (int i = 0; i < orderGoods.size(); i++) {
@@ -69,6 +70,8 @@ public class OrderController {
                 }
             }
             Order order = new Order();
+            Long orderId = DateTime.now().getMillis();
+            order.setOrderId(orderId);
             order.setUserId(orderReq.getUserId());
             order.setWineTotalPrice(wineTotalPrice);
             order.setOrderGoods(orderGoods);
@@ -76,7 +79,7 @@ public class OrderController {
             int i = orderService.insertOrder(order);
             if (i > 0) {
                 logger.info("【订单系统】添加订单成功");
-                return Result.buildSuccessResult("添加订单成功");
+                return Result.buildSuccessResult(order);
             }
             logger.info("【订单系统】添加订单失败");
             return Result.buildFailedResult(-1, "添加订单失败");
@@ -89,28 +92,28 @@ public class OrderController {
         }
     }
 
-    @RequestMapping(value ="paymentOrder.htm", method = RequestMethod.POST)
+    @RequestMapping(value = "paymentOrder.htm", method = RequestMethod.POST)
     @ResponseBody
-    public Result paymentOrder(@RequestBody Long orderId, HttpServletRequest req) {
+    public Result paymentOrder(@RequestBody PaymentReq paymentReq) {
         try {
-            Preconditions.checkArgument(orderId != null, "订单号不可为空");
-            String userId = req.getParameter("userId");
-            logger.info("【订单系统】请求支付订单，请求参数:{}", new Gson().toJson(orderId));
-            int i = orderService.paymentOrder(orderId, userId);
+            Preconditions.checkArgument(paymentReq.getOrderId() != null, "订单号不可为空");
+            Preconditions.checkArgument(paymentReq.getUserId() != null, "用户不可为空");
+            logger.info("【订单系统】请求支付订单，请求参数:{}", new Gson().toJson(paymentReq));
+            int i = orderService.paymentOrder(paymentReq.getOrderId(), paymentReq.getUserId());
             if (i > 0) {
                 logger.info("【订单系统】支付成功");
                 return Result.buildSuccessResult("支付成功");
             }
             if (i == 0) {
                 logger.info("【订单系统】账户余额不足");
-                return Result.buildFailedResult(-1, "账户余额不足");
+                return Result.buildSuccessResult("账户余额不足");
             }
             if (i == -2) {
                 logger.info("【订单系统】该订单已被支付");
-                return Result.buildFailedResult(-1, "该订单已被支付");
+                return Result.buildSuccessResult("该订单已被支付");
             }
             logger.info("【订单系统】支付失败");
-            return Result.buildFailedResult(-1, "支付失败");
+            return Result.buildSuccessResult("支付失败");
         } catch (IllegalArgumentException ie) {
             logger.error("【订单系统】非法参数异常", ie);
             return Result.buildFailedResult(-1, "非法参数异常");
@@ -120,7 +123,7 @@ public class OrderController {
         }
     }
 
-    @RequestMapping(value ="selectOrder.htm", method = RequestMethod.POST)
+    @RequestMapping(value = "selectOrder.htm", method = RequestMethod.POST)
     @ResponseBody
     public Result selectOrder(@RequestBody Long orderId) {
         try {
@@ -142,13 +145,14 @@ public class OrderController {
         }
     }
 
-    @RequestMapping(value ="selectOrderByUser.htm", method = RequestMethod.POST)
+    @RequestMapping(value = "selectOrderByUser.htm", method = RequestMethod.POST)
     @ResponseBody
     public Result selectOrderByUserId(@RequestBody String userId) {
         try {
+            String str = new StringBuffer(userId).deleteCharAt(userId.length() - 1).toString();
             Preconditions.checkArgument(userId != null, "用户ID不可为空");
-            logger.info("【订单系统】请求查询订单，请求参数:{}", new Gson().toJson(userId));
-            List<Order> orderList = orderService.selectOrderByUserId(userId);
+            logger.info("【订单系统】请求查询订单，请求参数:{}", new Gson().toJson(str));
+            List<Order> orderList = orderService.selectOrderByUserId(str);
             if (CollectionUtils.isEmpty(orderList)) {
                 logger.info("【订单系统】查询订单结果为空");
                 return Result.buildFailedResult(-1, "您还没有下过订单...快去购买吧~~~");

@@ -2,13 +2,15 @@ package com.jxw.design.model.req;
 
 import com.jxw.design.model.OrderGoods;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author Xingwu.Jia [xingwuj@tujia.com]
  * @date 2018/1/29 12:38
  */
-public class OrderReq {
+public class OrderReq implements Serializable {
+    private static final long serialVersionUID = -1878134396293863567L;
     /**
      * 用户id
      */

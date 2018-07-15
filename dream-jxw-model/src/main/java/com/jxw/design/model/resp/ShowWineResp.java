@@ -1,11 +1,14 @@
 package com.jxw.design.model.resp;
 
+import java.io.Serializable;
+
 /**
  * @Author Xingwu.Jia [xingwuj@tujia.com]
  * @Date 2018/2/6 14:43
  * @Description 酒品展示resp
  */
-public class ShowWineResp {
+public class ShowWineResp implements Serializable {
+    private static final long serialVersionUID = 1845706284459132673L;
     /**
      * 红酒id
      */

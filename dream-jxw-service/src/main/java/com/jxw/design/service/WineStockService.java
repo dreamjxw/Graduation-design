@@ -1,5 +1,7 @@
 package com.jxw.design.service;
 
+import com.jxw.design.model.WineStock;
+
 /**
  * @Author Xingwu.Jia [xingwuj@tujia.com]
  * @Date 2018/2/8 13:01
@@ -49,4 +51,12 @@ public interface WineStockService {
      * @return
      */
     int deleteStock(Long wineId);
+
+    /**
+     * 查询库存
+     *
+     * @param wineId
+     * @return
+     */
+    WineStock selectStock(Long wineId);
 }
